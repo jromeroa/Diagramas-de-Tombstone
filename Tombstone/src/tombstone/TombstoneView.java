@@ -114,6 +114,7 @@ public class TombstoneView extends FrameView {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -173,6 +174,11 @@ public class TombstoneView extends FrameView {
         jButton4.setPreferredSize(new java.awt.Dimension(90, 25));
         mainPanel.add(jButton4);
         jButton4.setBounds(30, 200, 90, 25);
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+        mainPanel.add(jLabel1);
+        jLabel1.setBounds(40, 290, 100, 14);
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -248,6 +254,7 @@ public class TombstoneView extends FrameView {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
