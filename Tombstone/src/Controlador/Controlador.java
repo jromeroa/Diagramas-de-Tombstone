@@ -16,7 +16,7 @@ public class Controlador {
 	private Modelo modelo;
 	private Vista vista;
 	private Figura seleccionada;
-        private int variable;
+        private int variable, hola;
 	
 	public Controlador(Modelo modelo, Vista vista){
 		this.modelo=modelo;
