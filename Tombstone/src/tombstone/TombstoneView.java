@@ -29,6 +29,7 @@ public class TombstoneView extends FrameView {
         super(app);
 
         initComponents();
+        int eso;
         Modelo modelo = new Modelo();
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
 			final Controlador controlador = new Controlador(modelo,vista);
