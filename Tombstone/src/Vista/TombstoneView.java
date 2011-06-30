@@ -29,11 +29,11 @@ public class TombstoneView extends FrameView {
         super(app);
 
         initComponents();
-        int eso;
+      
         Modelo modelo = new Modelo();
-			Vista vista = new Vista(new Dimension(1000,800),modelo);
-			final Controlador controlador = new Controlador(modelo,vista);
-			vista.controlador=controlador;
+        Vista vista = new Vista(new Dimension(1000,800),modelo);
+	final Controlador controlador = new Controlador(modelo,vista);
+	vista.controlador=controlador;
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
