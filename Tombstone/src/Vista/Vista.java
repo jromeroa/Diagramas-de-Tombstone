@@ -7,21 +7,20 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
 import Modelo.Modelo;
 import Modelo.Figura;
 import javax.swing.JPanel;
-
-
 import Controlador.Controlador;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
 
 public class Vista extends JPanel {
+    
 	static final long serialVersionUID = 0L;
 	private Modelo modelo;
-	public Controlador controlador;  //IMPORTANTE DEBE SER REGISTRADO O TODO FALLA
+	public Controlador controlador; 
+          
 	
 	public Vista(Dimension size, Modelo modelo){
 		super();
@@ -31,7 +30,7 @@ public class Vista extends JPanel {
 		setBackground(Color.white);
 		setFocusable(true);
                 setVisible(true);
-		//Mejorable al 1000% solo por simplificacion realizado de esta forma
+                
 		MouseController mouseControl = new MouseController() {
 			public void mouseClicked(MouseEvent event) {}
 			public void mouseEntered(MouseEvent event) {}
@@ -47,10 +46,6 @@ public class Vista extends JPanel {
 		this.addMouseListener(mouseControl);
 		this.addMouseMotionListener(mouseControl);
 	}
-
-    
-	
-    @Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;

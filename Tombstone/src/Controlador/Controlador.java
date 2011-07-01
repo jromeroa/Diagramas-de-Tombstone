@@ -6,8 +6,8 @@ import java.awt.event.MouseEvent;
 import java.util.ListIterator;
 
 import Vista.*;
-import Modelo.Circulo;
-import Modelo.Cuadrado;
+import Modelo.Programa;
+import Modelo.Compilador;
 import Modelo.Figura;
 import Modelo.Modelo;
 
@@ -16,11 +16,16 @@ public class Controlador {
 	private Modelo modelo;
 	private Vista vista;
 	private Figura seleccionada;
+        public boolean compilador,programa,maquina,interprete;
 	
 	public Controlador(Modelo modelo, Vista vista){
 		this.modelo=modelo;
 		this.vista=vista;
 		seleccionada=null;
+                compilador=false;
+                programa=false;
+                maquina=false;
+                interprete=false;
 	}
 	public Figura obtenerFigura(Point posicion){
 		ListIterator<Figura> it=modelo.getListado().listIterator();
@@ -53,24 +58,37 @@ public class Controlador {
 	public void eVmousePressed(MouseEvent ev) {
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			seleccionada=this.getFiguraEn(ev.getPoint());
+                      
 		}				
-		else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio a�ade figura tipo circulo
+		else if(SwingUtilities.isRightMouseButton(ev) && compilador)//click boton medio a�ade figura tipo circulo
 		{
-			this.anyadirFigura(new Circulo(ev.getPoint(),40));
+			agaCompilador(ev);
+		}
+                else if(SwingUtilities.isRightMouseButton(ev) && programa)//click boton medio a�ade figura tipo circulo
+		{
+			agaPrograma(ev);
+		}
+                else if(SwingUtilities.isRightMouseButton(ev) && maquina)//click boton medio a�ade figura tipo circulo
+		{
+			agaMaquina(ev);
+		}
+                else if(SwingUtilities.isRightMouseButton(ev) && interprete)//click boton medio a�ade figura tipo circulo
+		{
+			agaInterprete(ev);
 		}
 		vista.repaint();		
 	}
-        public void agaCompilador(){
+        public void agaCompilador(MouseEvent ev){
             Point po=new Point(100, 100);
-            this.anyadirFigura(new Cuadrado(po,40));
+            this.anyadirFigura(new Compilador(ev.getPoint(),40));
         }
-        public void agaPrograma(){
+        public void agaPrograma(MouseEvent ev){
             
         }
-        public void agaMaquina(){
+        public void agaMaquina(MouseEvent ev){
             
         }
-        public void agaInterprete(){
+        public void agaInterprete(MouseEvent ev){
             
         }
 	public void eVmouseDragged(MouseEvent ev) {

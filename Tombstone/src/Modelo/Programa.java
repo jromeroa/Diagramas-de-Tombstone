@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class Circulo extends Figura {
+public class Programa extends Figura {
 
 	private int radio;
 	
@@ -16,7 +16,7 @@ public class Circulo extends Figura {
 		return radio;
 	}
 	
-	public Circulo(Point posicion, int radio){
+	public Programa(Point posicion, int radio){
 		this.posicion=posicion;
 		this.radio=radio;
 		this.seleccionada=false;  //Deberia estar en el constructor de figura pero por simplicidad
