@@ -33,7 +33,8 @@ public class Programa extends Figura {
 	@Override
 	public void dibujar(Graphics g) {
 		g.setColor(Color.ORANGE);
-		g.fillOval(this.getX(), this.getY(), this.getRadio(), this.getRadio());
+		g.fillOval(this.getX(), this.getY(), this.getRadio()+25, this.getRadio()+25);
+                g.fillRect(this.getX()+11,this.getY()+50, this.getRadio()+5, this.getRadio()+5);
 		if(this.getSeleccionada()){
 			g.setColor(Color.CYAN);
 			g.drawOval(this.getX()+7, this.getY()+7, this.getRadio()-20, this.getRadio()-20);

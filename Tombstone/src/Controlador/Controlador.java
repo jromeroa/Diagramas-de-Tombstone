@@ -83,7 +83,7 @@ public class Controlador {
             this.anyadirFigura(new Compilador(ev.getPoint(),40));
         }
         public void agaPrograma(MouseEvent ev){
-            
+            this.anyadirFigura(new Programa(ev.getPoint(),40));
         }
         public void agaMaquina(MouseEvent ev){
             
