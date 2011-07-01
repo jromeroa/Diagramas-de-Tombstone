@@ -16,14 +16,12 @@ public class Controlador {
 	private Modelo modelo;
 	private Vista vista;
 	private Figura seleccionada;
-        private int variable, hola;
 	
 	public Controlador(Modelo modelo, Vista vista){
 		this.modelo=modelo;
 		this.vista=vista;
 		seleccionada=null;
 	}
-	
 	public Figura obtenerFigura(Point posicion){
 		ListIterator<Figura> it=modelo.getListado().listIterator();
 	    while (it.hasNext()) {
@@ -55,15 +53,26 @@ public class Controlador {
 	public void eVmousePressed(MouseEvent ev) {
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			seleccionada=this.getFiguraEn(ev.getPoint());
-		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo a�ade figura tipo cuadrado
-			this.anyadirFigura(new Cuadrado(ev.getPoint(),40));			
-		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio a�ade figura tipo circulo
+		}				
+		else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio a�ade figura tipo circulo
 		{
 			this.anyadirFigura(new Circulo(ev.getPoint(),40));
 		}
 		vista.repaint();		
 	}
-	
+        public void agaCompilador(){
+            Point po=new Point(100, 100);
+            this.anyadirFigura(new Cuadrado(po,40));
+        }
+        public void agaPrograma(){
+            
+        }
+        public void agaMaquina(){
+            
+        }
+        public void agaInterprete(){
+            
+        }
 	public void eVmouseDragged(MouseEvent ev) {
 		if(seleccionada!=null){
 			//El movimiento puede ser mas fluido recalculando el pto

@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 
 
 import Controlador.Controlador;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 
 
 public class Vista extends JPanel {
@@ -24,11 +26,11 @@ public class Vista extends JPanel {
 	public Vista(Dimension size, Modelo modelo){
 		super();
 		this.modelo=modelo;
-		
-		setPreferredSize(size);
+		setBounds(105, 100, size.width, size.height);
+		setBorder(new BevelBorder(1));
 		setBackground(Color.white);
 		setFocusable(true);
-
+                setVisible(true);
 		//Mejorable al 1000% solo por simplificacion realizado de esta forma
 		MouseController mouseControl = new MouseController() {
 			public void mouseClicked(MouseEvent event) {}
@@ -45,7 +47,10 @@ public class Vista extends JPanel {
 		this.addMouseListener(mouseControl);
 		this.addMouseMotionListener(mouseControl);
 	}
+
+    
 	
+    @Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
