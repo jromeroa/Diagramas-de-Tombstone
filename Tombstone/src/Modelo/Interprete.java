@@ -36,9 +36,9 @@ public class Interprete extends Figura{
 	@Override
 	public void dibujar(Graphics g)
 	{
-		g.setColor(Color.BLUE);
-		g.fillRect(this.getX(), this.getY(), this.getAncho()+100, this.getAncho());
-                g.fillRect(this.getX()+40,this.getY()+40,this.getAncho()+20,this.getAncho());
+		g.setColor(Color.GREEN);
+		g.fillRect(this.getX(), this.getY(), this.getAncho()+20, this.getAncho()+60);
+                
 		if(this.getSeleccionada()){
 			g.setColor(Color.RED);
 			g.drawRect(this.getX()+7, this.getY()+7, this.getAncho()-20, this.getAncho()-20);

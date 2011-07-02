@@ -9,6 +9,8 @@ import Vista.*;
 import Modelo.Programa;
 import Modelo.Compilador;
 import Modelo.Figura;
+import Modelo.Interprete;
+import Modelo.Maquina;
 import Modelo.Modelo;
 
 public class Controlador {
@@ -86,10 +88,10 @@ public class Controlador {
             this.anyadirFigura(new Programa(ev.getPoint(),40));
         }
         public void agaMaquina(MouseEvent ev){
-            
+            this.anyadirFigura(new Maquina(ev.getPoint(),40));
         }
         public void agaInterprete(MouseEvent ev){
-            
+            this.anyadirFigura(new Interprete(ev.getPoint(),40));
         }
 	public void eVmouseDragged(MouseEvent ev) {
 		if(seleccionada!=null){

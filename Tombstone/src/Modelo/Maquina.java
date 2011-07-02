@@ -38,8 +38,10 @@ public class Maquina extends Figura{
 	public void dibujar(Graphics g)
 	{
 		g.setColor(Color.BLUE);
-		g.fillRect(this.getX(), this.getY(), this.getAncho()+100, this.getAncho());
-                g.fillRect(this.getX()+40,this.getY()+40,this.getAncho()+20,this.getAncho());
+		int[] x={this.getX(),this.getX(),this.getX()+30,this.getX()+60,this.getX()+60};
+                int[] y={this.getY(),this.getY()+40,this.getY()+70,this.getY()+40,this.getY()};
+                g.setColor(Color.YELLOW);
+                g.fillPolygon(x, y, x.length);
 		if(this.getSeleccionada()){
 			g.setColor(Color.RED);
 			g.drawRect(this.getX()+7, this.getY()+7, this.getAncho()-20, this.getAncho()-20);
