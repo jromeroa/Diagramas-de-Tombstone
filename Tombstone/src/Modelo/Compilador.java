@@ -12,6 +12,9 @@ public class Compilador extends Figura {
 		this.ancho=ancho;
 		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
 	}
+
+    public Compilador() {}
+
 	
 	public void setAncho(int ancho){
 		this.ancho=ancho;

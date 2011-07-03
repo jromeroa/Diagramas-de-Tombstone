@@ -18,6 +18,8 @@ public class Maquina extends Figura{
 		this.ancho=ancho;
 		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
 	}
+
+    public Maquina() {}
 	
 	public void setAncho(int ancho){
 		this.ancho=ancho;

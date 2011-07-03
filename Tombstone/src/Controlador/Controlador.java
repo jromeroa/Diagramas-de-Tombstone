@@ -58,8 +58,29 @@ public class Controlador {
 	}
 	
 	public void eVmousePressed(MouseEvent ev) {
+            
+            Compilador c=new Compilador();
+            Programa p=new Programa();
+            Maquina m=new Maquina();
+            Interprete i=new Interprete();
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
-			seleccionada=this.getFiguraEn(ev.getPoint());
+			 seleccionada=this.getFiguraEn(ev.getPoint());
+                if(seleccionada!=null){
+                    if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(c)){
+                                            
+                        System.out.println("Doble click Compilador");
+                       
+                    }
+                    else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(p)){
+                        System.out.println("Doble click Programa");
+                    }
+                    else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(m)){
+                        System.out.println("Doble click Maquina");
+                    }
+                    else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(i)){
+                        System.out.println("Doble click Interprete");
+                    }  
+                }
                       
 		}				
 		else if(SwingUtilities.isRightMouseButton(ev) && compilador)//click boton medio a�ade figura tipo circulo

@@ -7,7 +7,8 @@ import java.awt.Point;
 public class Programa extends Figura {
 
 	private int radio;
-	
+
+    public Programa() {}
 	public void setRadio(int ancho){
 		this.radio=ancho;
 	}
