@@ -4,7 +4,7 @@ import java.awt.Point;
 import javax.swing.SwingUtilities;
 import java.awt.event.MouseEvent;
 import java.util.ListIterator;
-
+import proyecto1.*;
 import Vista.*;
 import Modelo.Programa;
 import Modelo.Compilador;
@@ -12,12 +12,13 @@ import Modelo.Figura;
 import Modelo.Interprete;
 import Modelo.Maquina;
 import Modelo.Modelo;
+import javax.swing.*;
 
 public class Controlador {
 	
 	private Modelo modelo;
 	private Vista vista;
-	private Figura seleccionada;
+	public Figura seleccionada;
         public boolean compilador,programa,maquina,interprete;
 	
 	public Controlador(Modelo modelo, Vista vista){
@@ -63,41 +64,71 @@ public class Controlador {
             Programa p=new Programa();
             Maquina m=new Maquina();
             Interprete i=new Interprete();
-		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
-			 seleccionada=this.getFiguraEn(ev.getPoint());
-                if(seleccionada!=null){
-                    if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(c)){
+                   //////////////   ARRASTRAR UNA IMAGEN O CON DOBLE CLICK ABRIR LAS PROPIEDADES  ////////
+		if(SwingUtilities.isLeftMouseButton(ev)){ 			
+                    seleccionada=this.getFiguraEn(ev.getPoint());
+                    if(seleccionada!=null){
+                        if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(c)){
                                             
-                        System.out.println("Doble click Compilador");
+                            proyecto1.Proyecto1View.jFrame2.setBounds(150,150,300,220);
+                            proyecto1.Proyecto1View.jFrame2.setVisible(true);
+                            proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
+                           /// System.out.println(proyecto1.Proyecto1View.jTextField1.getText());
+                          //  seleccionada.AtributosCompilador(proyecto1.Proyecto1View.jFrame2.j, null, null);
+                        }
+                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(p)){
+                     
+                            proyecto1.Proyecto1View.jFrame3.setBounds(150,150,300,220);
+                            proyecto1.Proyecto1View.jFrame3.setVisible(true);
+                        }
+                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(m)){
+                     
+                            proyecto1.Proyecto1View.jFrame4.setBounds(150,150,300,220);
+                            proyecto1.Proyecto1View.jFrame4.setVisible(true);
+                        }
+                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(i)){
                        
-                    }
-                    else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(p)){
-                        System.out.println("Doble click Programa");
-                    }
-                    else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(m)){
-                        System.out.println("Doble click Maquina");
-                    }
-                    else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(i)){
-                        System.out.println("Doble click Interprete");
+                            proyecto1.Proyecto1View.jFrame5.setBounds(150,150,300,220);
+                            proyecto1.Proyecto1View.jFrame5.setVisible(true);
+                        }  
                     }  
-                }
-                      
-		}				
-		else if(SwingUtilities.isRightMouseButton(ev) && compilador)//click boton medio a�ade figura tipo circulo
+		}	///////////// CREACION DE LAS FIGURAS CON EL CLICK DERECHO  //////////////////  			
+		else if(SwingUtilities.isRightMouseButton(ev) && compilador)
 		{
 			agaCompilador(ev);
 		}
-                else if(SwingUtilities.isRightMouseButton(ev) && programa)//click boton medio a�ade figura tipo circulo
+                else if(SwingUtilities.isRightMouseButton(ev) && programa)
 		{
 			agaPrograma(ev);
 		}
-                else if(SwingUtilities.isRightMouseButton(ev) && maquina)//click boton medio a�ade figura tipo circulo
+                else if(SwingUtilities.isRightMouseButton(ev) && maquina)
 		{
 			agaMaquina(ev);
 		}
-                else if(SwingUtilities.isRightMouseButton(ev) && interprete)//click boton medio a�ade figura tipo circulo
+                else if(SwingUtilities.isRightMouseButton(ev) && interprete)
 		{
 			agaInterprete(ev);
+		}             ////////////    BORRAR UNA IMAGEN CON LA RUEDA DEL MOUSE  ////////////
+                else if(SwingUtilities.isMiddleMouseButton(ev)){ 			
+                    seleccionada=this.getFiguraEn(ev.getPoint());
+                    if(seleccionada!=null){
+                        if(seleccionada.getClass().isInstance(c)){
+                                            
+                            modelo.ElimminarFigura(seleccionada);
+                        }
+                        else if(seleccionada.getClass().isInstance(p)){
+                     
+                            modelo.ElimminarFigura(seleccionada);
+                        }
+                        else if(seleccionada.getClass().isInstance(m)){
+                     
+                            modelo.ElimminarFigura(seleccionada);
+                        }
+                        else if(seleccionada.getClass().isInstance(i)){
+                       
+                            modelo.ElimminarFigura(seleccionada);
+                        }  
+                    }  
 		}
 		vista.repaint();		
 	}
@@ -121,7 +152,6 @@ public class Controlador {
 			vista.repaint();
 		}
 	}
-
 	public void eVmouseReleased (MouseEvent ev) {
 		vista.repaint();
 		if(seleccionada!=null){
@@ -129,5 +159,4 @@ public class Controlador {
 			seleccionada=null;
 		}
 	}
-
 }

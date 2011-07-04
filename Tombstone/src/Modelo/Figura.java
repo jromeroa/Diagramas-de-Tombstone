@@ -8,8 +8,7 @@ public abstract class Figura {
 	protected boolean seleccionada;
 	public abstract boolean dentroFigura(Point p);
 	public abstract void dibujar(Graphics g);	
-	private String programa="",lenguaje="",maquina="";
-        public String fuente="",objeto="",implementacion="";
+        public String fuente="",objeto="",implementacion="",programa="",lenguaje="",maquina="";
         
         
         public void AtributosCompilador(String fuente,String objeto, String implementacion){
@@ -72,5 +71,4 @@ public abstract class Figura {
 	public void setSeleccionada(boolean sel){
 		seleccionada=sel;
 	}
-
 }
