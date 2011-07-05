@@ -12,12 +12,14 @@ import java.awt.Point;
  */
 public class Maquina extends Figura{
    
-        private int ancho;
-	public Maquina(Point posicion, int ancho){
-		this.posicion=posicion;
-		this.ancho=ancho;
-		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
-	}
+    private int ancho;
+    private String lenguaje;
+    
+    public Maquina(Point posicion, int ancho){
+            this.posicion=posicion;
+            this.ancho=ancho;
+            this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
+    }
 
     public Maquina() {}
 	

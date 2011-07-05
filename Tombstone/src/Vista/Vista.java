@@ -46,6 +46,7 @@ public class Vista extends JPanel {
 		this.addMouseListener(mouseControl);
 		this.addMouseMotionListener(mouseControl);
 	}
+        
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
