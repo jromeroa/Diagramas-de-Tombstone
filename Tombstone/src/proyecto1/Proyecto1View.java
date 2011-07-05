@@ -652,6 +652,7 @@ public class Proyecto1View extends FrameView {
         System.out.println(compi.getObjeto());
         System.out.println(compi.getImplementacion());
         jFrame2.setVisible(false);
+        vista.repaint();
     }//GEN-LAST:event_AceptaCompilador
 
     private void AceptaPrograma(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaPrograma

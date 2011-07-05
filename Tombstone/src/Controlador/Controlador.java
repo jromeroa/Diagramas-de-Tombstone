@@ -60,15 +60,11 @@ public class Controlador {
 	
 	public void eVmousePressed(MouseEvent ev) {
             
-            Compilador c=new Compilador();
-            Programa p=new Programa();
-            Maquina m=new Maquina();
-            Interprete i=new Interprete();
                    //////////////   ARRASTRAR UNA IMAGEN O CON DOBLE CLICK ABRIR LAS PROPIEDADES  ////////
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			
                     seleccionada=this.getFiguraEn(ev.getPoint());
                     if(seleccionada!=null){
-                        if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(c)){
+                        if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(new Compilador())){
                                             
                             proyecto1.Proyecto1View.jFrame2.setBounds(150,150,300,220);
                             proyecto1.Proyecto1View.jFrame2.setVisible(true);
@@ -76,17 +72,17 @@ public class Controlador {
                            /// System.out.println(proyecto1.Proyecto1View.jTextField1.getText());
                           //  seleccionada.AtributosCompilador(proyecto1.Proyecto1View.jFrame2.j, null, null);
                         }
-                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(p)){
+                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(new Programa())){
                      
                             proyecto1.Proyecto1View.jFrame3.setBounds(150,150,300,220);
                             proyecto1.Proyecto1View.jFrame3.setVisible(true);
                         }
-                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(m)){
+                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(new Maquina())){
                      
                             proyecto1.Proyecto1View.jFrame4.setBounds(150,150,300,220);
                             proyecto1.Proyecto1View.jFrame4.setVisible(true);
                         }
-                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(i)){
+                        else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(new Interprete())){
                        
                             proyecto1.Proyecto1View.jFrame5.setBounds(150,150,300,220);
                             proyecto1.Proyecto1View.jFrame5.setVisible(true);
@@ -112,19 +108,19 @@ public class Controlador {
                 else if(SwingUtilities.isMiddleMouseButton(ev)){ 			
                     seleccionada=this.getFiguraEn(ev.getPoint());
                     if(seleccionada!=null){
-                        if(seleccionada.getClass().isInstance(c)){
+                        if(seleccionada.getClass().isInstance(new Compilador())){
                                             
                             modelo.ElimminarFigura(seleccionada);
                         }
-                        else if(seleccionada.getClass().isInstance(p)){
+                        else if(seleccionada.getClass().isInstance(new Programa())){
                      
                             modelo.ElimminarFigura(seleccionada);
                         }
-                        else if(seleccionada.getClass().isInstance(m)){
+                        else if(seleccionada.getClass().isInstance(new Maquina())){
                      
                             modelo.ElimminarFigura(seleccionada);
                         }
-                        else if(seleccionada.getClass().isInstance(i)){
+                        else if(seleccionada.getClass().isInstance(new Interprete())){
                        
                             modelo.ElimminarFigura(seleccionada);
                         }  
