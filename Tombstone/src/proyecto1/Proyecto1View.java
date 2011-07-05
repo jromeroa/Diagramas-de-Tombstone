@@ -5,8 +5,12 @@ package proyecto1;
 
 import Controlador.Controlador;
 import Controlador.Controlador.*;
+import Modelo.Compilador;
 import Modelo.Figura;
+import Modelo.Interprete;
+import Modelo.Maquina;
 import Modelo.Modelo;
+import Modelo.Programa;
 import Vista.Vista;
 import Vista.Vista;
 import java.awt.BorderLayout;
@@ -197,7 +201,7 @@ public class Proyecto1View extends FrameView {
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(jLabel1)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,11 +249,11 @@ public class Proyecto1View extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -642,33 +646,36 @@ public class Proyecto1View extends FrameView {
 
     private void AceptaCompilador(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaCompilador
 
-        fig.AtributosCompilador(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
-        System.out.println(fig.getFuente());
-        System.out.println(fig.getObjeto());
-        System.out.println(fig.getImplementacion());
+        Compilador compi= (Compilador) fig;
+        compi.AtributosCompilador(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
+        System.out.println(compi.getFuente());
+        System.out.println(compi.getObjeto());
+        System.out.println(compi.getImplementacion());
         jFrame2.setVisible(false);
     }//GEN-LAST:event_AceptaCompilador
 
     private void AceptaPrograma(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaPrograma
 
-        fig.AtributosPrograma(jTextField4.getText(), jTextField5.getText());
-        System.out.println(fig.getPrograma());
-        System.out.println(fig.getLenguaje());
+        Programa progra= (Programa) fig;
+        System.out.println(progra.getPrograma());
+        System.out.println(progra.getLenguaje());
         jFrame3.setVisible(false);
     }//GEN-LAST:event_AceptaPrograma
 
     private void AceptaMaquina(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaMaquina
 
-        fig.AtributoMaquina(jTextField6.getText());
-        System.out.println(fig.getMaquina());
+        Maquina maqui= (Maquina) fig;
+        maqui.AtributoMaquina(jTextField6.getText());
+        System.out.println(maqui.getMaquina());
         jFrame4.setVisible(false);
     }//GEN-LAST:event_AceptaMaquina
 
     private void AceptaInterprete(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaInterprete
 
-        fig.AtributosInterprete(jTextField7.getText(), jTextField8.getText());
-        System.out.println(fig.getLenguaje());
-        System.out.println(fig.getMaquina());
+        Interprete inter= (Interprete) fig;
+        inter.AtributosInterprete(jTextField7.getText(), jTextField8.getText());
+        System.out.println(inter.getLenguaje());
+        System.out.println(inter.getMaquina());
         jFrame5.setVisible(false);
     }//GEN-LAST:event_AceptaInterprete
     public static void RecibirSeleccionada(Figura f) {

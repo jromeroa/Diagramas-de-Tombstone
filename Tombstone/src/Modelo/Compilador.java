@@ -14,11 +14,20 @@ public class Compilador extends Figura {
 		this.posicion=posicion;
 		this.ancho=ancho;
 		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
+                this.fuente="";
+            this.objeto="";
+            this.implementacion="";
 	}
 
     public Compilador() {}
 
 	
+        public void AtributosCompilador(String fuente,String objeto, String implementacion){
+            this.fuente=fuente;
+            this.objeto=objeto;
+            this.implementacion=implementacion;
+        }
+    
 	public void setAncho(int ancho){
 		this.ancho=ancho;
 	}
@@ -65,9 +74,9 @@ public class Compilador extends Figura {
 		g.setColor(Color.BLACK);
                 
                 g.setFont(new Font("Arial", 1, 12));
-                g.drawString("fuente", this.getX(), this.getY() - 10);
-                g.drawString("objeto", this.getX()+100, this.getY() - 10);
-                g.drawString("implemet", this.getX()+40, this.getY() + 100);
+                g.drawString(fuente, this.getX(), this.getY() - 10);
+                g.drawString(objeto, this.getX()+100, this.getY() - 10);
+                g.drawString(implementacion, this.getX()+40, this.getY() + 100);
                 
 		g.setColor(Color.BLUE);
 		g.fillRect(this.getX(), this.getY(), this.getAncho()+100, this.getAncho());

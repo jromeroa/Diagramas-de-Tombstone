@@ -10,15 +10,19 @@ public class Modelo {
 	public Modelo(){
 		listaFiguras = new ArrayList<Figura>();
 	}
+        
 	public List<Figura> getListado(){
 		return listaFiguras;
 	}
+        
 	public void anyadirFigura(Figura f){
 		listaFiguras.add(f);
 	}
+        
 	public void ElimminarFigura(Figura f){
             listaFiguras.remove(f);
         }
+        
 	public Figura getFiguraEn(Point p){
 		for (Figura elemento : getListado()) {
 			if(elemento.dentroFigura(p)){

@@ -12,6 +12,8 @@ import java.awt.Point;
  */
 public class Interprete extends Figura{
     private int ancho;
+    private String lenguaje, maquina;
+    
 	public Interprete(Point posicion, int ancho){
 		this.posicion=posicion;
 		this.ancho=ancho;
@@ -27,6 +29,19 @@ public class Interprete extends Figura{
 		return ancho;
 	}
 	
+        public String getLenguaje(){
+            return this.lenguaje;
+        }
+        
+        public String getMaquina(){
+            return this.maquina;
+        }
+        public void AtributosInterprete(String lenguaje,String maquina){
+            
+            this.lenguaje=lenguaje;
+            this.maquina=maquina;
+        }
+        
 	@Override
 	//Muy rudimentario y solo a modo demostrativo, para uso serio debe ser mejorada
 	public boolean dentroFigura(Point p) {

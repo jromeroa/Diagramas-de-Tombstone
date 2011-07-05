@@ -7,6 +7,7 @@ import java.awt.Point;
 public class Programa extends Figura {
 
 	private int radio;
+        private String lenguaje, programa;
 
     public Programa() {}
 	public void setRadio(int ancho){
@@ -17,12 +18,25 @@ public class Programa extends Figura {
 		return radio;
 	}
 	
+        public String getPrograma(){
+            return this.programa;
+        }
+        
+        public String getLenguaje(){
+            return this.lenguaje;
+        }
+        
 	public Programa(Point posicion, int radio){
 		this.posicion=posicion;
 		this.radio=radio;
 		this.seleccionada=false;  //Deberia estar en el constructor de figura pero por simplicidad
 	}
 	
+        public void AtributosPrograma(String programa,String lenguaje){
+            this.programa=programa;
+            this.lenguaje=lenguaje;
+        }
+        
 	@Override
 	public boolean dentroFigura(Point p) {
 		if ( radio >= Math.sqrt( Math.pow( p.x - posicion.x, 2 ) + Math.pow(p.y - posicion.y, 2 )))		

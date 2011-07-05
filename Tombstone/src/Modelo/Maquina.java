@@ -13,7 +13,7 @@ import java.awt.Point;
 public class Maquina extends Figura{
    
     private int ancho;
-    private String lenguaje;
+    private String maquina;
     
     public Maquina(Point posicion, int ancho){
             this.posicion=posicion;
@@ -30,6 +30,13 @@ public class Maquina extends Figura{
 		return ancho;
 	}
 	
+        public String getMaquina(){
+            return this.maquina;
+        }
+        
+        public void AtributoMaquina(String maquina){
+            this.maquina=maquina;
+        }
 	@Override
 	//Muy rudimentario y solo a modo demostrativo, para uso serio debe ser mejorada
 	public boolean dentroFigura(Point p) {
