@@ -22,7 +22,6 @@ public class Maquina extends Figura{
             this.seleccionada=false;
             this.maquina="";
     }
-    
 	public void setAncho(int ancho){
 		this.ancho=ancho;
 	}

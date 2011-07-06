@@ -43,8 +43,8 @@ public class Programa extends Figura {
 	@Override
 	public void dibujar(Graphics g) {
 		g.setColor(Color.ORANGE);
-		g.fillOval(this.getX(), this.getY(), this.getRadio()+25, this.getRadio()+25);
-                g.fillRect(this.getX()+11,this.getY()+50, this.getRadio()+5, this.getRadio()+5);
+		g.fillOval(this.getX(), this.getY(), this.getRadio()+40, this.getRadio()+40);
+                g.fillRect(this.getX()+11,this.getY()+50, this.getRadio()+20, this.getRadio()+20);
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Arial", 1, 12));
                 g.drawString(programa, this.getX()+15, this.getY() + 35);
