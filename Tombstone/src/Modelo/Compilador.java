@@ -71,12 +71,7 @@ public class Compilador extends Figura {
 	@Override
 	public void dibujar(Graphics g)
 	{
-		g.setColor(Color.BLACK);
-                
-                g.setFont(new Font("Arial", 1, 12));
-                g.drawString(fuente, this.getX(), this.getY() - 10);
-                g.drawString(objeto, this.getX()+100, this.getY() - 10);
-                g.drawString(implementacion, this.getX()+40, this.getY() + 100);
+		
                 
 		g.setColor(Color.BLUE);
 		g.fillRect(this.getX(), this.getY(), this.getAncho()+100, this.getAncho());
@@ -85,5 +80,11 @@ public class Compilador extends Figura {
 			g.setColor(Color.RED);
 			g.drawRect(this.getX()+7, this.getY()+7, this.getAncho()-20, this.getAncho()-20);
 		}
+                g.setColor(Color.BLACK);
+                
+                g.setFont(new Font("Arial", 1, 12));
+                g.drawString(fuente, this.getX()+2, this.getY() + 20);
+                g.drawString(objeto, this.getX()+90, this.getY() + 20);
+                g.drawString(implementacion, this.getX()+45, this.getY() + 70);
 	}	
 }
