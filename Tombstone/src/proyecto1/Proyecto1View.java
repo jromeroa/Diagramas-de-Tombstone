@@ -271,8 +271,11 @@ public class Proyecto1View extends FrameView {
                 .addGap(3, 3, 3))
         );
 
+        jFrame1.setBounds(new java.awt.Rectangle(0, 0, 600, 400));
+        jFrame1.setMaximizedBounds(new java.awt.Rectangle(0, 0, 600, 400));
         jFrame1.setMinimumSize(new java.awt.Dimension(940, 660));
         jFrame1.setName("jFrame1"); // NOI18N
+        jFrame1.setResizable(false);
         jFrame1.getContentPane().setLayout(null);
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
