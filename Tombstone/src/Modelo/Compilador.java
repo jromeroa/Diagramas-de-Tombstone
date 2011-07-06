@@ -10,6 +10,7 @@ public class Compilador extends Figura {
 	private int ancho;
         private String fuente, objeto, implementacion;
         private String jcoaks;
+        private String pagano;
         
 	public Compilador(Point posicion, int ancho){
 		this.posicion=posicion;
