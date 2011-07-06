@@ -15,7 +15,7 @@ import Modelo.Modelo;
 import javax.swing.*;
 
 public class Controlador {
-	
+
     private Modelo modelo;
     private Vista vista;
     public Figura seleccionada;
@@ -29,6 +29,7 @@ public class Controlador {
         programa = false;
         maquina = false;
         interprete = false;
+
     }
 
     public Figura obtenerFigura(Point posicion) {
@@ -46,42 +47,38 @@ public class Controlador {
     public void cambiarPosicion(Figura f, Point p) {
         f.setPosicion(p);
     }
+
     public Vista getVista() {
         return vista;
     }
+
     public void anyadirFigura(Figura f) {
         modelo.anyadirFigura(f);
     }
+
     public Figura getFiguraEn(Point p) {
         return modelo.getFiguraEn(p);
     }
+
     public void eVmousePressed(MouseEvent ev) {
 
         //////////////   ARRASTRAR UNA IMAGEN O CON DOBLE CLICK ABRIR LAS PROPIEDADES  ////////
-        if (SwingUtilities.isLeftMouseButton(ev)) 
-        {
+        if (SwingUtilities.isLeftMouseButton(ev)) {
             seleccionada = this.getFiguraEn(ev.getPoint());
-            if (seleccionada != null) 
-            {
+            if (seleccionada != null) {
                 if (ev.getClickCount() == 2 && seleccionada instanceof Compilador) {
                     proyecto1.Proyecto1View.jFrame2.setBounds(150, 150, 300, 220);
                     proyecto1.Proyecto1View.jFrame2.setVisible(true);
                     proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
-                }
-                else if (ev.getClickCount() == 2 && seleccionada instanceof Programa) 
-                {
+                } else if (ev.getClickCount() == 2 && seleccionada instanceof Programa) {
                     proyecto1.Proyecto1View.jFrame3.setBounds(150, 150, 300, 220);
                     proyecto1.Proyecto1View.jFrame3.setVisible(true);
                     proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
-                } 
-                else if (ev.getClickCount() == 2 && seleccionada instanceof Maquina) 
-                {
+                } else if (ev.getClickCount() == 2 && seleccionada instanceof Maquina) {
                     proyecto1.Proyecto1View.jFrame4.setBounds(150, 150, 300, 220);
                     proyecto1.Proyecto1View.jFrame4.setVisible(true);
                     proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
-                } 
-                else if (ev.getClickCount() == 2 && seleccionada instanceof Interprete) 
-                {
+                } else if (ev.getClickCount() == 2 && seleccionada instanceof Interprete) {
                     proyecto1.Proyecto1View.jFrame5.setBounds(150, 150, 300, 220);
                     proyecto1.Proyecto1View.jFrame5.setVisible(true);
                     proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
@@ -100,20 +97,13 @@ public class Controlador {
         else if (SwingUtilities.isMiddleMouseButton(ev)) {
             seleccionada = this.getFiguraEn(ev.getPoint());
             if (seleccionada != null) {
-                if (seleccionada instanceof Compilador) 
-                {
+                if (seleccionada instanceof Compilador) {
                     modelo.ElimminarFigura(seleccionada);
-                } 
-                else if (seleccionada instanceof  Programa) 
-                {
+                } else if (seleccionada instanceof Programa) {
                     modelo.ElimminarFigura(seleccionada);
-                }
-                else if (seleccionada instanceof Maquina) 
-                {
+                } else if (seleccionada instanceof Maquina) {
                     modelo.ElimminarFigura(seleccionada);
-                } 
-                else if (seleccionada instanceof Interprete) 
-                {
+                } else if (seleccionada instanceof Interprete) {
                     modelo.ElimminarFigura(seleccionada);
                 }
             }
@@ -144,25 +134,61 @@ public class Controlador {
             vista.repaint();
         }
     }
+
     public void eVmouseReleased(MouseEvent ev) {
         vista.repaint();
         if (seleccionada != null) {
-            if (seleccionada instanceof Compilador) 
-            {
-                Point punto_final = new Point(seleccionada.getX()+120, seleccionada.getY()+60);
+            
+            //Unir un compilador a alguna figura
+            if (seleccionada instanceof Compilador) {
+                Point punto_final = new Point(seleccionada.getX() + 120, seleccionada.getY() + 60);
                 Figura cercana = this.getFiguraEn(punto_final);
-                if(cercana instanceof Compilador)
+                Compilador compi = (Compilador) seleccionada;
+                //Unir dos compiladores
+                if (cercana instanceof Compilador) 
                 {
-                    seleccionada.setPosicion(new Point(cercana.getX()-101, cercana.getY()-41));
-                    JOptionPane.showMessageDialog(null,"Hay un compilador cerca");
+                    Compilador compi2 = (Compilador) cercana;
+                    if(compi.getImplementacion().compareTo(compi2.getFuente()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() - 101, cercana.getY() - 41));
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
                 }
-                
-                punto_final = new Point(seleccionada.getX()+60, seleccionada.getY()+100);
+                punto_final = new Point(seleccionada.getX() + 60, seleccionada.getY() + 100);
                 cercana = this.getFiguraEn(punto_final);
-                if(cercana instanceof Maquina)
+                //Unir un compilador a una maquina
+                if (cercana instanceof Maquina) 
                 {
-                    seleccionada.setPosicion(new Point(cercana.getX()-40, cercana.getY()-81));
-                    JOptionPane.showMessageDialog(null,"Hay una maquina cerca");
+                    Maquina maqui = (Maquina) cercana;
+                    if(compi.getImplementacion().compareTo(maqui.getMaquina()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() - 40, cercana.getY() - 81));
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+                punto_final = new Point(seleccionada.getX() + 60, seleccionada.getY() + 100);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir un compilador a un Interprete
+                if (cercana instanceof Interprete) 
+                {
+                    Interprete inter = (Interprete) cercana;
+                    if(compi.getImplementacion().compareTo(inter.getLenguaje()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() - 40, cercana.getY() - 81));
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
                 }
             }
             seleccionada.setSeleccionada(false);
