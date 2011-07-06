@@ -46,19 +46,15 @@ public class Controlador {
     public void cambiarPosicion(Figura f, Point p) {
         f.setPosicion(p);
     }
-
     public Vista getVista() {
         return vista;
     }
-
     public void anyadirFigura(Figura f) {
         modelo.anyadirFigura(f);
     }
-
     public Figura getFiguraEn(Point p) {
         return modelo.getFiguraEn(p);
     }
-
     public void eVmousePressed(MouseEvent ev) {
 
         //////////////   ARRASTRAR UNA IMAGEN O CON DOBLE CLICK ABRIR LAS PROPIEDADES  ////////
@@ -76,16 +72,19 @@ public class Controlador {
                 {
                     proyecto1.Proyecto1View.jFrame3.setBounds(150, 150, 300, 220);
                     proyecto1.Proyecto1View.jFrame3.setVisible(true);
+                    proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
                 } 
                 else if (ev.getClickCount() == 2 && seleccionada instanceof Maquina) 
                 {
                     proyecto1.Proyecto1View.jFrame4.setBounds(150, 150, 300, 220);
                     proyecto1.Proyecto1View.jFrame4.setVisible(true);
+                    proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
                 } 
                 else if (ev.getClickCount() == 2 && seleccionada instanceof Interprete) 
                 {
                     proyecto1.Proyecto1View.jFrame5.setBounds(150, 150, 300, 220);
                     proyecto1.Proyecto1View.jFrame5.setVisible(true);
+                    proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
                 }
             }
         } ///////////// CREACION DE LAS FIGURAS CON EL CLICK DERECHO  //////////////////  			
@@ -141,12 +140,10 @@ public class Controlador {
 
     public void eVmouseDragged(MouseEvent ev) {
         if (seleccionada != null) {
-            //El movimiento puede ser mas fluido recalculando el pto
             this.cambiarPosicion(seleccionada, ev.getPoint());
             vista.repaint();
         }
     }
-
     public void eVmouseReleased(MouseEvent ev) {
         vista.repaint();
         if (seleccionada != null) {
