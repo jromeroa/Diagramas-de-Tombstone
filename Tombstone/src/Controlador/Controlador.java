@@ -46,19 +46,15 @@ public class Controlador {
     public void cambiarPosicion(Figura f, Point p) {
         f.setPosicion(p);
     }
-
     public Vista getVista() {
         return vista;
     }
-
     public void anyadirFigura(Figura f) {
         modelo.anyadirFigura(f);
     }
-
     public Figura getFiguraEn(Point p) {
         return modelo.getFiguraEn(p);
     }
-
     public void eVmousePressed(MouseEvent ev) {
 
         //////////////   ARRASTRAR UNA IMAGEN O CON DOBLE CLICK ABRIR LAS PROPIEDADES  ////////
