@@ -23,6 +23,10 @@ public class Interprete extends Figura{
                 this.lenguaje="";
                 this.maquina="";
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> b4c6f3749d0e673a9abd3100402bb9024743ef94
 	public void setAncho(int ancho){
 		this.ancho=ancho;
 	}

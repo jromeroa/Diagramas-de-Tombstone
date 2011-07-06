@@ -9,7 +9,11 @@ public class Compilador extends Figura {
 
 	private int ancho;
         private String fuente, objeto, implementacion;
+<<<<<<< HEAD
     
+=======
+        
+>>>>>>> b4c6f3749d0e673a9abd3100402bb9024743ef94
 	public Compilador(Point posicion, int ancho){
 		this.posicion=posicion;
 		this.ancho=ancho;
@@ -18,7 +22,11 @@ public class Compilador extends Figura {
             this.objeto="";
             this.implementacion="";
 	}
+<<<<<<< HEAD
         public Compilador() {}
+=======
+	
+>>>>>>> b4c6f3749d0e673a9abd3100402bb9024743ef94
         public void AtributosCompilador(String fuente,String objeto, String implementacion){
             this.fuente=fuente;
             this.objeto=objeto;
