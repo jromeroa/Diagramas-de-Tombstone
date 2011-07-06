@@ -651,9 +651,6 @@ public class Proyecto1View extends FrameView {
 
         Compilador compi= (Compilador) fig;
         compi.AtributosCompilador(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
-        System.out.println(compi.getFuente());
-        System.out.println(compi.getObjeto());
-        System.out.println(compi.getImplementacion());
         jFrame2.setVisible(false);
         vista.repaint();
     }//GEN-LAST:event_AceptaCompilador
@@ -661,26 +658,25 @@ public class Proyecto1View extends FrameView {
     private void AceptaPrograma(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaPrograma
 
         Programa progra= (Programa) fig;
-        System.out.println(progra.getPrograma());
-        System.out.println(progra.getLenguaje());
+        progra.AtributosPrograma(jTextField4.getText(), jTextField5.getText());
         jFrame3.setVisible(false);
+        vista.repaint();
     }//GEN-LAST:event_AceptaPrograma
 
     private void AceptaMaquina(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaMaquina
 
         Maquina maqui= (Maquina) fig;
         maqui.AtributoMaquina(jTextField6.getText());
-        System.out.println(maqui.getMaquina());
         jFrame4.setVisible(false);
+        vista.repaint();
     }//GEN-LAST:event_AceptaMaquina
 
     private void AceptaInterprete(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaInterprete
 
         Interprete inter= (Interprete) fig;
         inter.AtributosInterprete(jTextField7.getText(), jTextField8.getText());
-        System.out.println(inter.getLenguaje());
-        System.out.println(inter.getMaquina());
         jFrame5.setVisible(false);
+        vista.repaint();
     }//GEN-LAST:event_AceptaInterprete
     public static void RecibirSeleccionada(Figura f) {
 

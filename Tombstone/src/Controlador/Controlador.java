@@ -69,23 +69,24 @@ public class Controlador {
                             proyecto1.Proyecto1View.jFrame2.setBounds(150,150,300,220);
                             proyecto1.Proyecto1View.jFrame2.setVisible(true);
                             proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
-                           /// System.out.println(proyecto1.Proyecto1View.jTextField1.getText());
-                          //  seleccionada.AtributosCompilador(proyecto1.Proyecto1View.jFrame2.j, null, null);
                         }
                         else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(new Programa())){
                      
                             proyecto1.Proyecto1View.jFrame3.setBounds(150,150,300,220);
                             proyecto1.Proyecto1View.jFrame3.setVisible(true);
+                            proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
                         }
                         else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(new Maquina())){
                      
                             proyecto1.Proyecto1View.jFrame4.setBounds(150,150,300,220);
                             proyecto1.Proyecto1View.jFrame4.setVisible(true);
+                            proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
                         }
                         else if(ev.getClickCount()==2 && seleccionada.getClass().isInstance(new Interprete())){
                        
                             proyecto1.Proyecto1View.jFrame5.setBounds(150,150,300,220);
                             proyecto1.Proyecto1View.jFrame5.setVisible(true);
+                            proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
                         }  
                     }  
 		}	///////////// CREACION DE LAS FIGURAS CON EL CLICK DERECHO  //////////////////  			
