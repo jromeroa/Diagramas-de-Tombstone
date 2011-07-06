@@ -9,12 +9,7 @@ public class Programa extends Figura {
 
 	private int radio;
         private String lenguaje, programa;
-<<<<<<< HEAD
         
-        public Programa(){}
-=======
-
->>>>>>> b4c6f3749d0e673a9abd3100402bb9024743ef94
 	public void setRadio(int ancho){
 		this.radio=ancho;
         }
