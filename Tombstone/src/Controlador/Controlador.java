@@ -131,7 +131,8 @@ public class Controlador {
         if (seleccionada != null) {
             
             //Unir un compilador a alguna figura
-            if (seleccionada instanceof Compilador) {
+            if (seleccionada instanceof Compilador) 
+            {
                 Point punto_final = new Point(seleccionada.getX() + 120, seleccionada.getY() + 60);
                 Figura cercana = this.getFiguraEn(punto_final);
                 Compilador compi = (Compilador) seleccionada;
@@ -142,6 +143,7 @@ public class Controlador {
                     if(compi.getImplementacion().compareTo(compi2.getFuente()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() - 101, cercana.getY() - 41));
+                        agregar_lista(seleccionada, cercana);
                     }
                     else
                     {
@@ -158,6 +160,7 @@ public class Controlador {
                     if(compi.getImplementacion().compareTo(maqui.getMaquina()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() - 40, cercana.getY() - 81));
+                        agregar_lista(seleccionada, cercana);
                     }
                     else
                     {
@@ -174,6 +177,63 @@ public class Controlador {
                     if(compi.getImplementacion().compareTo(inter.getLenguaje()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() - 40, cercana.getY() - 81));
+                        agregar_lista(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+                punto_final = new Point(seleccionada.getX() + 150, seleccionada.getY() - 60);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir un compilador a un Programa
+                if (cercana instanceof Programa) 
+                {
+                    Programa progra = (Programa) cercana;
+                    if(compi.getObjeto().compareTo(progra.getLenguaje()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() - 130, cercana.getY() + 70));
+                        agregar_lista(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+            } //Unir una maquina a una figura
+            else if (seleccionada instanceof Maquina) 
+            {
+                Point punto_final = new Point(seleccionada.getX() + 20, seleccionada.getY() - 80);
+                Figura cercana = this.getFiguraEn(punto_final);
+                Maquina maqui = (Maquina) seleccionada;
+                //Unir una maquina a un interprete
+                if (cercana instanceof Interprete) 
+                {
+                    Interprete inter = (Interprete) cercana;
+                    if(maqui.getMaquina().compareTo(inter.getMaquina()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX(), cercana.getY() + 101));
+                        agregar_lista(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+                
+                punto_final = new Point(seleccionada.getX() - 20, seleccionada.getY() - 60);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir una maquina a un compilador
+                if (cercana instanceof Compilador) 
+                {
+                    Compilador compi = (Compilador) cercana;
+                    if(maqui.getMaquina().compareTo(compi.getImplementacion()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX()+40, cercana.getY() + 81));
+                        agregar_lista(seleccionada, cercana);
                     }
                     else
                     {
@@ -185,5 +245,9 @@ public class Controlador {
             seleccionada.setSeleccionada(false);
             seleccionada = null;
         }
+    }
+
+    private void agregar_lista(Figura seleccionada, Figura cercana) {
+        ;
     }
 }
