@@ -122,7 +122,6 @@ public class Controlador {
     }
 
     public void agaCompilador(MouseEvent ev) {
-        Point po = new Point(100, 100);
         this.anyadirFigura(new Compilador(ev.getPoint(), 40));
     }
 
