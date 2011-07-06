@@ -18,7 +18,6 @@ public class Compilador extends Figura {
             this.objeto="";
             this.implementacion="";
 	}
-        
         public void AtributosCompilador(String fuente,String objeto, String implementacion){
             this.fuente=fuente;
             this.objeto=objeto;

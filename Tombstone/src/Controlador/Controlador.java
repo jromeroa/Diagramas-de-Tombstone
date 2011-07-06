@@ -31,7 +31,6 @@ public class Controlador {
         interprete = false;
 
     }
-
     public Figura obtenerFigura(Point posicion) {
         ListIterator<Figura> it = modelo.getListado().listIterator();
         while (it.hasNext()) {
@@ -43,7 +42,6 @@ public class Controlador {
         }
         return null;
     }
-
     public void cambiarPosicion(Figura f, Point p) {
         f.setPosicion(p);
     }
@@ -61,7 +59,6 @@ public class Controlador {
     }
 
     public void eVmousePressed(MouseEvent ev) {
-
         //////////////   ARRASTRAR UNA IMAGEN O CON DOBLE CLICK ABRIR LAS PROPIEDADES  ////////
         if (SwingUtilities.isLeftMouseButton(ev)) {
             seleccionada = this.getFiguraEn(ev.getPoint());
@@ -110,24 +107,18 @@ public class Controlador {
         }
         vista.repaint();
     }
-
     public void agaCompilador(MouseEvent ev) {
-        Point po = new Point(100, 100);
         this.anyadirFigura(new Compilador(ev.getPoint(), 40));
     }
-
     public void agaPrograma(MouseEvent ev) {
         this.anyadirFigura(new Programa(ev.getPoint(), 40));
     }
-
     public void agaMaquina(MouseEvent ev) {
         this.anyadirFigura(new Maquina(ev.getPoint(), 40));
     }
-
     public void agaInterprete(MouseEvent ev) {
         this.anyadirFigura(new Interprete(ev.getPoint(), 40));
     }
-
     public void eVmouseDragged(MouseEvent ev) {
         if (seleccionada != null) {
             this.cambiarPosicion(seleccionada, ev.getPoint());
