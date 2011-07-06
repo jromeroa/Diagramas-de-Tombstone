@@ -160,11 +160,11 @@ public class Controlador {
                     JOptionPane.showMessageDialog(null,"Hay un compilador cerca");
                 }
                 
-                punto_final = new Point(seleccionada.getX()+120, seleccionada.getY()+60);
+                punto_final = new Point(seleccionada.getX()+60, seleccionada.getY()+100);
                 cercana = this.getFiguraEn(punto_final);
                 if(cercana instanceof Maquina)
                 {
-                    seleccionada.setPosicion(new Point(cercana.getX()-101, cercana.getY()-41));
+                    seleccionada.setPosicion(new Point(cercana.getX()-40, cercana.getY()-81));
                     JOptionPane.showMessageDialog(null,"Hay una maquina cerca");
                 }
             }
