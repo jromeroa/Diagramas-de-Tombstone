@@ -46,7 +46,7 @@ public class Maquina extends Figura{
 		g.setColor(Color.BLUE);
 		int[] x={this.getX(),this.getX(),this.getX()+30,this.getX()+60,this.getX()+60};
                 int[] y={this.getY(),this.getY()+40,this.getY()+70,this.getY()+40,this.getY()};
-                g.setColor(Color.YELLOW);
+                g.setColor(Color.GRAY);
                 g.fillPolygon(x, y, x.length);
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Arial", 1, 12));

@@ -18,6 +18,16 @@ public class Compilador extends Figura {
             this.objeto="";
             this.implementacion="";
 	}
+        
+	public Compilador(Point posicion, int ancho, String fuente,String objeto, String implementacion){
+            this.posicion=posicion;
+            this.ancho=ancho;
+            this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
+            this.fuente=fuente;
+            this.objeto=objeto;
+            this.implementacion=implementacion;
+	}
+        
         public void AtributosCompilador(String fuente,String objeto, String implementacion){
             this.fuente=fuente;
             this.objeto=objeto;
