@@ -257,7 +257,7 @@ public class Controlador {
                     if(maqui.getMaquina().compareTo(progra.getLenguaje()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY() + 111));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -278,7 +278,7 @@ public class Controlador {
                     if(inter.getMaquina().compareTo(maqui.getMaquina()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX(), cercana.getY() - 101));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -296,7 +296,7 @@ public class Controlador {
                     if(inter.getLenguaje().compareTo(compi.getImplementacion()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() + 40, cercana.getY()  + 81));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -314,7 +314,7 @@ public class Controlador {
                     if(inter.getLenguaje().compareTo(progra.getLenguaje()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY()  + 111));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -335,7 +335,7 @@ public class Controlador {
                     if(progra.getLenguaje().compareTo(maqui.getMaquina()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() - 11, cercana.getY() - 110));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
