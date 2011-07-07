@@ -239,7 +239,9 @@ public class Controlador {
                     if (maqui.getMaquina().compareTo(progra.getLenguaje()) == 0) {
                         seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY() + 111));
                         agregarListaAux(seleccionada, cercana);
-                    } else {
+                    }
+                    else
+                    {
                         seleccionada.setPosicion(new Point(100, 100));
                         abrirMensaje("El lenguaje no es compatible");
                     }
@@ -255,7 +257,9 @@ public class Controlador {
                     if (inter.getMaquina().compareTo(maqui.getMaquina()) == 0) {
                         seleccionada.setPosicion(new Point(cercana.getX(), cercana.getY() - 101));
                         agregarListaAux(seleccionada, cercana);
-                    } else {
+                    }
+                    else
+                    {
                         seleccionada.setPosicion(new Point(100, 100));
                         abrirMensaje("El lenguaje no es compatible");
                     }
@@ -266,10 +270,13 @@ public class Controlador {
                 //Unir un interprete a un compilador
                 if (cercana instanceof Compilador) {
                     Compilador compi = (Compilador) cercana;
-                    if (inter.getLenguaje().compareTo(compi.getImplementacion()) == 0) {
-                        seleccionada.setPosicion(new Point(cercana.getX() + 40, cercana.getY() + 81));
+                    if(inter.getLenguaje().compareTo(compi.getImplementacion()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() + 40, cercana.getY()  + 81));
                         agregarListaAux(seleccionada, cercana);
-                    } else {
+                    }
+                    else
+                    {
                         seleccionada.setPosicion(new Point(100, 100));
                         abrirMensaje("El lenguaje no es compatible");
                     }
@@ -280,10 +287,13 @@ public class Controlador {
                 //Unir un interprete a un programa
                 if (cercana instanceof Programa) {
                     Programa progra = (Programa) cercana;
-                    if (inter.getLenguaje().compareTo(progra.getLenguaje()) == 0) {
-                        seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY() + 111));
+                    if(inter.getLenguaje().compareTo(progra.getLenguaje()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY()  + 111));
                         agregarListaAux(seleccionada, cercana);
-                    } else {
+                    }
+                    else
+                    {
                         seleccionada.setPosicion(new Point(100, 100));
                         abrirMensaje("El lenguaje no es compatible");
                     }
@@ -296,8 +306,9 @@ public class Controlador {
                 //Unir un programa a una maquina
                 if (cercana instanceof Maquina) {
                     Maquina maqui = (Maquina) cercana;
-                    if (progra.getLenguaje().compareTo(maqui.getMaquina()) == 0) {
-                        seleccionada.setPosicion(new Point(cercana.getX() - 11, cercana.getY() - 111));
+                    if(progra.getLenguaje().compareTo(maqui.getMaquina()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() - 11, cercana.getY() - 110));
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
