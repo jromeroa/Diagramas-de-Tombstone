@@ -213,6 +213,8 @@ public class Proyecto1View extends FrameView {
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
+        mainPanel.getAccessibleContext().setAccessibleParent(jButton1);
+
         menuBar.setName("menuBar"); // NOI18N
 
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
@@ -271,11 +273,9 @@ public class Proyecto1View extends FrameView {
                 .addGap(3, 3, 3))
         );
 
-        jFrame1.setBounds(new java.awt.Rectangle(0, 0, 600, 400));
-        jFrame1.setMaximizedBounds(new java.awt.Rectangle(0, 0, 600, 400));
-        jFrame1.setMinimumSize(new java.awt.Dimension(940, 660));
+        jFrame1.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        jFrame1.setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         jFrame1.setName("jFrame1"); // NOI18N
-        jFrame1.setResizable(false);
         jFrame1.getContentPane().setLayout(null);
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
@@ -603,18 +603,19 @@ public class Proyecto1View extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Modelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Modelo
-
         try {
             jFrame1.setVisible(true);
+            Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
+            jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height);
             Container guiobjects = jFrame1.getContentPane();
             guiobjects.setLayout(null);
             Modelo modelo = new Modelo();
-            vista = new Vista(new Dimension(800, 500), modelo);
+            vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-150), modelo);
             controlador = new Controlador(modelo, vista);
             vista.controlador = controlador;
             guiobjects.add(controlador.getVista());
-
-        } catch (RuntimeException e) {
+        }
+        catch (RuntimeException e) {
             exitApplication();
         }
     }//GEN-LAST:event_Modelo
@@ -692,7 +693,7 @@ public class Proyecto1View extends FrameView {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JFrame jFrame1;
+    public static javax.swing.JFrame jFrame1;
     public static javax.swing.JFrame jFrame2;
     public static javax.swing.JFrame jFrame3;
     public static javax.swing.JFrame jFrame4;

@@ -158,7 +158,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
                 punto_final = new Point(seleccionada.getX() + 60, seleccionada.getY() + 100);
@@ -171,7 +171,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
                 punto_final = new Point(seleccionada.getX() + 60, seleccionada.getY() + 100);
@@ -184,7 +184,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
                 punto_final = new Point(seleccionada.getX() + 150, seleccionada.getY() - 60);
@@ -197,7 +197,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
             } //Unir una maquina a una figura
@@ -213,7 +213,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
 
@@ -227,7 +227,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
 
@@ -241,7 +241,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
             }//Unir un Interprete a una figura
@@ -257,7 +257,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
 
@@ -271,7 +271,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
 
@@ -285,7 +285,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
             }//Unir un Programa a una figura
@@ -301,7 +301,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
 
@@ -315,7 +315,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
 
@@ -329,7 +329,7 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
 
@@ -343,13 +343,18 @@ public class Controlador {
                         agregarListaAux(seleccionada, cercana);
                     } else {
                         seleccionada.setPosicion(new Point(100, 100));
-                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                        abrirMensaje("El lenguaje no es compatible");
                     }
                 }
             }
             seleccionada.setSeleccionada(false);
             seleccionada = null;
         }
+    }
+    
+    private void abrirMensaje(String mensaje){
+            JOptionPane.showMessageDialog(null, mensaje);
+            proyecto1.Proyecto1View.jFrame1.setVisible(true);
     }
 
     private void agregarListaAux(Figura seleccionada, Figura cercana) {
@@ -378,7 +383,7 @@ public class Controlador {
         }
         
         //Verificando si se genera un nuevo compilador
-        if (compiladores == 2 && maquinas == 1 && interpretes ==0 && programas==0) 
+        if (compiladores == 2 && maquinas == 1 && interpretes<=1 && programas==0) 
         {
             Compilador compi1 = null, compi2 = null;
             for (Figura elemento : modelo.getListadoAux()) {
@@ -395,11 +400,11 @@ public class Controlador {
                 Point punto_nuevo = new Point(compi2.getX() + 202, compi2.getY());
                 this.anyadirFigura(new Compilador(punto_nuevo, 40, compi2.getFuente(), compi2.getObjeto(), compi1.getObjeto()));
             }
-            JOptionPane.showMessageDialog(null, "Se creo un nuevo compilador");
+            abrirMensaje( "Se creo un nuevo compilador");
         }
         
         //Verificando si se genera un nuevo programa
-        if (compiladores == 1 && maquinas == 1 && interpretes ==0 && programas==1) 
+        if (compiladores == 1 && maquinas == 1 && interpretes <=1 && programas==1) 
         {
             Compilador compi = null;
             Programa progra = null;
@@ -412,7 +417,7 @@ public class Controlador {
             }
             Point punto_nuevo = new Point(compi.getX() + 130, progra.getY());
             this.anyadirFigura(new Programa(punto_nuevo, 40,progra.getPrograma(),compi.getObjeto()));
-            JOptionPane.showMessageDialog(null, "Se creo un nuevo programa");
+            abrirMensaje("Se creo un nuevo programa");
         }
         
 
