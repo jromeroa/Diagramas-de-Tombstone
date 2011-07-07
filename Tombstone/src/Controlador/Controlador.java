@@ -257,7 +257,7 @@ public class Controlador {
                     if(maqui.getMaquina().compareTo(progra.getLenguaje()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY() + 111));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -278,7 +278,7 @@ public class Controlador {
                     if(inter.getMaquina().compareTo(maqui.getMaquina()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX(), cercana.getY() - 101));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -296,7 +296,7 @@ public class Controlador {
                     if(inter.getLenguaje().compareTo(compi.getImplementacion()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() + 40, cercana.getY()  + 81));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -314,7 +314,7 @@ public class Controlador {
                     if(inter.getLenguaje().compareTo(progra.getLenguaje()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY()  + 111));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -325,7 +325,7 @@ public class Controlador {
             }//Unir un Programa a una figura
             else if (seleccionada instanceof Programa) 
             {
-                Point punto_final = new Point(seleccionada.getX() + 10, seleccionada.getY() + 100);
+                Point punto_final = new Point(seleccionada.getX() + 30, seleccionada.getY() + 130);
                 Figura cercana = this.getFiguraEn(punto_final);
                 Programa progra = (Programa) seleccionada;
                 //Unir un programa a una maquina
@@ -334,8 +334,62 @@ public class Controlador {
                     Maquina maqui = (Maquina) cercana;
                     if(progra.getLenguaje().compareTo(maqui.getMaquina()) == 0)
                     {
-                        seleccionada.setPosicion(new Point(cercana.getX() - 11, cercana.getY() - 110));
-                        agregar_lista(seleccionada, cercana);
+                        seleccionada.setPosicion(new Point(cercana.getX() - 11, cercana.getY() - 111));
+                        agregarListaAux(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+                
+                punto_final = new Point(seleccionada.getX() + 30, seleccionada.getY() + 130);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir un programa a un Interprete
+                if (cercana instanceof Interprete) 
+                {
+                    Interprete inter = (Interprete) cercana;
+                    if(progra.getLenguaje().compareTo(inter.getLenguaje()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() - 11, cercana.getY() - 111));
+                        agregarListaAux(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+                
+                punto_final = new Point(seleccionada.getX() - 110, seleccionada.getY() + 90);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir un programa a un Compilador por la derecha
+                if (cercana instanceof Compilador) 
+                {
+                    Compilador compi = (Compilador) cercana;
+                    if(progra.getLenguaje().compareTo(compi.getObjeto()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() + 130, cercana.getY() - 70));
+                        agregarListaAux(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+                
+                punto_final = new Point(seleccionada.getX() + 90, seleccionada.getY() + 90);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir un programa a un Compilador por la izquierda
+                if (cercana instanceof Compilador) 
+                {
+                    Compilador compi = (Compilador) cercana;
+                    if(progra.getLenguaje().compareTo(compi.getObjeto()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() - 72, cercana.getY() - 70));
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -348,15 +402,67 @@ public class Controlador {
             seleccionada = null;
         }
     }
-    private void agregarListaAux(Figura seleccionada, Figura cercana) {
-       
-       boolean consiguio=modelo.EstaEnListaAux(cercana);
-       System.out.println(consiguio);
-        if(!consiguio){
+    private void agregarListaAux(Figura seleccionada, Figura cercana) 
+    {
+        //Agregando la o las figuras a la lista auxiliar
+        boolean consiguio=modelo.EstaEnListaAux(cercana);
+        System.out.println(consiguio);
+        if(!consiguio)
+        {
             modelo.anyadirFiguraAux(cercana);
             modelo.anyadirFiguraAux(seleccionada);
-        }else{ modelo.anyadirFiguraAux(seleccionada);}
-         for (Figura elemento : modelo.getListadoAux()) {
+        }
+        else
+        {
+            modelo.anyadirFiguraAux(seleccionada);
+        }
+        //Verificando si se genera un nuevo compilador
+        int compiladores=0, maquina=0, otro=0;
+        for (Figura elemento : modelo.getListadoAux()) 
+        {
+            if (elemento instanceof Compilador) 
+            {
+                compiladores++;
+            }
+            else if (elemento instanceof Maquina) 
+            {
+                maquina++;
+            }else
+            {
+                otro++;
+            }
+        }
+        if(compiladores==2 && maquina==1 && otro==0)
+        {
+            Compilador compi1=null, compi2=null;
+            for (Figura elemento : modelo.getListadoAux()) 
+            {
+                if (elemento instanceof Compilador && compi1==null) 
+                {
+                    compi1=(Compilador)elemento;
+                }else if (elemento instanceof Compilador && compi2==null) 
+                {
+                    compi2=(Compilador)elemento;
+                }
+            }
+            if(compi1.getY()<compi2.getY())
+            {
+                Point punto_nuevo=new Point(compi1.getX()+202,compi1.getY());
+                this.anyadirFigura(new Compilador(punto_nuevo, 40));
+                Compilador nuevo= (Compilador) this.getFiguraEn(punto_nuevo);
+                nuevo.AtributosCompilador(compi1.getFuente(),compi1.getObjeto(),compi2.getObjeto());
+            }
+            else
+            {
+                Point punto_nuevo=new Point(compi2.getX()+202,compi2.getY());
+                this.anyadirFigura(new Compilador(punto_nuevo, 40));
+                Compilador nuevo= (Compilador) this.getFiguraEn(punto_nuevo);
+                nuevo.AtributosCompilador(compi2.getFuente(),compi2.getObjeto(),compi1.getObjeto());
+            }
+        }
+        
+        for (Figura elemento : modelo.getListadoAux()) 
+        {
             System.out.println(elemento.toString());
         }
     }
