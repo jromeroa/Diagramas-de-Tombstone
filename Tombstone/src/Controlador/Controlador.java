@@ -57,12 +57,19 @@ public class Controlador {
     public Figura getFiguraEn(Point p) {
         return modelo.getFiguraEn(p);
     }
-
     public void eVmousePressed(MouseEvent ev) {
         //////////////   ARRASTRAR UNA IMAGEN O CON DOBLE CLICK ABRIR LAS PROPIEDADES  ////////
         if (SwingUtilities.isLeftMouseButton(ev)) {
             seleccionada = this.getFiguraEn(ev.getPoint());
             if (seleccionada != null) {
+                
+                if(modelo.EstaEnListaAux(seleccionada)){
+                    modelo.ElimminarFiguraAux(seleccionada);
+                    System.out.println("Elimine de la lista aux:  "+seleccionada.toString());
+                }
+                for (Figura elemento : modelo.getListadoAux()) {
+                    System.out.println(elemento.toString());
+                }
                 if (ev.getClickCount() == 2 && seleccionada instanceof Compilador) {
                     proyecto1.Proyecto1View.jFrame2.setBounds(150, 150, 300, 220);
                     proyecto1.Proyecto1View.jFrame2.setVisible(true);
@@ -125,7 +132,6 @@ public class Controlador {
             vista.repaint();
         }
     }
-
     public void eVmouseReleased(MouseEvent ev) {
         vista.repaint();
         if (seleccionada != null) {
@@ -143,7 +149,7 @@ public class Controlador {
                     if(compi.getImplementacion().compareTo(compi2.getFuente()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() - 101, cercana.getY() - 41));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -160,7 +166,7 @@ public class Controlador {
                     if(compi.getImplementacion().compareTo(maqui.getMaquina()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() - 40, cercana.getY() - 81));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -177,7 +183,7 @@ public class Controlador {
                     if(compi.getImplementacion().compareTo(inter.getLenguaje()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() - 40, cercana.getY() - 81));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -194,7 +200,7 @@ public class Controlador {
                     if(compi.getObjeto().compareTo(progra.getLenguaje()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX() - 130, cercana.getY() + 70));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -215,7 +221,7 @@ public class Controlador {
                     if(maqui.getMaquina().compareTo(inter.getMaquina()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX(), cercana.getY() + 101));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -233,7 +239,7 @@ public class Controlador {
                     if(maqui.getMaquina().compareTo(compi.getImplementacion()) == 0)
                     {
                         seleccionada.setPosicion(new Point(cercana.getX()+40, cercana.getY() + 81));
-                        agregar_lista(seleccionada, cercana);
+                        agregarListaAux(seleccionada, cercana);
                     }
                     else
                     {
@@ -342,8 +348,17 @@ public class Controlador {
             seleccionada = null;
         }
     }
-
-    private void agregar_lista(Figura seleccionada, Figura cercana) {
-        ;
+    private void agregarListaAux(Figura seleccionada, Figura cercana) {
+       
+       boolean consiguio=modelo.EstaEnListaAux(cercana);
+       System.out.println(consiguio);
+        if(!consiguio){
+            modelo.anyadirFiguraAux(cercana);
+            modelo.anyadirFiguraAux(seleccionada);
+        }else{ modelo.anyadirFiguraAux(seleccionada);}
+         for (Figura elemento : modelo.getListadoAux()) {
+            System.out.println(elemento.toString());
+        }
     }
+    
 }
