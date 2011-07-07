@@ -241,6 +241,102 @@ public class Controlador {
                         JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
                     }
                 }
+                
+                punto_final = new Point(seleccionada.getX() - 10, seleccionada.getY() - 120);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir una maquina a un programa
+                if (cercana instanceof Programa) 
+                {
+                    Programa progra = (Programa) cercana;
+                    if(maqui.getMaquina().compareTo(progra.getLenguaje()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY() + 111));
+                        agregar_lista(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+            }//Unir un Interprete a una figura
+            else if (seleccionada instanceof Interprete) 
+            {
+                Point punto_final = new Point(seleccionada.getX() + 20, seleccionada.getY() + 120);
+                Figura cercana = this.getFiguraEn(punto_final);
+                Interprete inter = (Interprete) seleccionada;
+                //Unir un interprete a una maquina
+                if (cercana instanceof Maquina) 
+                {
+                    Maquina maqui = (Maquina) cercana;
+                    if(inter.getMaquina().compareTo(maqui.getMaquina()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX(), cercana.getY() - 101));
+                        agregar_lista(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+                
+                punto_final = new Point(seleccionada.getX() - 20, seleccionada.getY() - 60);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir un interprete a un compilador
+                if (cercana instanceof Compilador) 
+                {
+                    Compilador compi = (Compilador) cercana;
+                    if(inter.getLenguaje().compareTo(compi.getImplementacion()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() + 40, cercana.getY()  + 81));
+                        agregar_lista(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+                
+                punto_final = new Point(seleccionada.getX() + 10 , seleccionada.getY() - 100);
+                cercana = this.getFiguraEn(punto_final);
+                //Unir un interprete a un programa
+                if (cercana instanceof Programa) 
+                {
+                    Programa progra = (Programa) cercana;
+                    if(inter.getLenguaje().compareTo(progra.getLenguaje()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() + 11, cercana.getY()  + 111));
+                        agregar_lista(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
+            }//Unir un Programa a una figura
+            else if (seleccionada instanceof Programa) 
+            {
+                Point punto_final = new Point(seleccionada.getX() + 10, seleccionada.getY() + 100);
+                Figura cercana = this.getFiguraEn(punto_final);
+                Programa progra = (Programa) seleccionada;
+                //Unir un programa a una maquina
+                if (cercana instanceof Maquina) 
+                {
+                    Maquina maqui = (Maquina) cercana;
+                    if(progra.getLenguaje().compareTo(maqui.getMaquina()) == 0)
+                    {
+                        seleccionada.setPosicion(new Point(cercana.getX() - 11, cercana.getY() - 110));
+                        agregar_lista(seleccionada, cercana);
+                    }
+                    else
+                    {
+                        seleccionada.setPosicion(new Point(100, 100));
+                        JOptionPane.showMessageDialog(null, "El lenguaje no es compatible");
+                    }
+                }
             }
             seleccionada.setSeleccionada(false);
             seleccionada = null;
