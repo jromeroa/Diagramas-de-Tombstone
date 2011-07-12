@@ -12,6 +12,7 @@ import Modelo.Figura;
 import Modelo.Interprete;
 import Modelo.Maquina;
 import Modelo.Modelo;
+import com.db4o.*;
 import javax.swing.*;
 
 public class Controlador {
@@ -20,8 +21,10 @@ public class Controlador {
     private Vista vista;
     public Figura seleccionada;
     public boolean compilador, programa, maquina, interprete;
-
+ObjectContainer db ;
     public Controlador(Modelo modelo, Vista vista) {
+        
+        db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "basedatos.db4o");
         this.modelo = modelo;
         this.vista = vista;
         seleccionada = null;
@@ -393,6 +396,7 @@ public class Controlador {
             }
         }
         
+        
         //Verificando si se genera un nuevo compilador
         if (compiladores == 2 && maquinas == 1 && interpretes<=1 && programas==0) 
         {
@@ -411,6 +415,7 @@ public class Controlador {
                 Point punto_nuevo = new Point(compi2.getX() + 202, compi2.getY());
                 this.anyadirFigura(new Compilador(punto_nuevo, 40, compi2.getFuente(), compi2.getObjeto(), compi1.getObjeto()));
             }
+            db.store(modelo.getListadoAux());
             abrirMensaje( "Se creo un nuevo compilador");
         }
         
@@ -428,10 +433,10 @@ public class Controlador {
             }
             Point punto_nuevo = new Point(compi.getX() + 130, progra.getY());
             this.anyadirFigura(new Programa(punto_nuevo, 40,progra.getPrograma(),compi.getObjeto()));
+            db.store(modelo.getListadoAux());
             abrirMensaje("Se creo un nuevo programa");
         }
         
-
         for (Figura elemento : modelo.getListadoAux()) {
             System.out.println(elemento.toString());
         }
