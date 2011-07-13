@@ -13,11 +13,19 @@ import Modelo.Modelo;
 import Modelo.Programa;
 import Vista.Vista;
 import Vista.Vista;
+import com.jpackages.jflashplayer.*;
+import com.jpackages.jflashplayer.JFlashInvalidFlashException;
+import com.jpackages.jflashplayer.JFlashLibraryLoadFailedException;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -25,6 +33,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
@@ -41,12 +50,14 @@ public class Proyecto1View extends FrameView {
     public Vista vista;
     public Controlador controlador;
     public static Figura fig;
+    private String flashFilePath;
 
     public Proyecto1View(SingleFrameApplication app) {
 
         super(app);
         initComponents();
         jComboBox1.setVisible(false);
+        
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -175,6 +186,7 @@ public class Proyecto1View extends FrameView {
         jLabel13 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
+        jFrame6 = new javax.swing.JFrame();
 
         mainPanel.setMaximumSize(new java.awt.Dimension(120, 180));
         mainPanel.setMinimumSize(new java.awt.Dimension(120, 180));
@@ -623,6 +635,19 @@ public class Proyecto1View extends FrameView {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
+        jFrame6.setName("jFrame6"); // NOI18N
+
+        javax.swing.GroupLayout jFrame6Layout = new javax.swing.GroupLayout(jFrame6.getContentPane());
+        jFrame6.getContentPane().setLayout(jFrame6Layout);
+        jFrame6Layout.setHorizontalGroup(
+            jFrame6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 468, Short.MAX_VALUE)
+        );
+        jFrame6Layout.setVerticalGroup(
+            jFrame6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 352, Short.MAX_VALUE)
+        );
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -630,6 +655,7 @@ public class Proyecto1View extends FrameView {
 
     private void Modelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Modelo
        NuevoModelo();
+       
     }//GEN-LAST:event_Modelo
 
     private void Compilador(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Compilador
@@ -694,6 +720,7 @@ public class Proyecto1View extends FrameView {
 
     private void Abrir(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Abrir
        NuevoModelo();
+           
     }//GEN-LAST:event_Abrir
 
     private void AbrirModelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AbrirModelo
@@ -741,6 +768,7 @@ public class Proyecto1View extends FrameView {
     public static javax.swing.JFrame jFrame3;
     public static javax.swing.JFrame jFrame4;
     public static javax.swing.JFrame jFrame5;
+    private javax.swing.JFrame jFrame6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
