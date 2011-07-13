@@ -13,7 +13,9 @@ import Modelo.Modelo;
 import Modelo.Programa;
 import Vista.Vista;
 import Vista.Vista;
+import com.db4o.*;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -41,11 +43,13 @@ public class Proyecto1View extends FrameView {
     public Vista vista;
     public Controlador controlador;
     public static Figura fig;
-
+    ObjectContainer db ;
+    
     public Proyecto1View(SingleFrameApplication app) {
 
         super(app);
         initComponents();
+        db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "basedatos.db4o");
         jComboBox1.setVisible(false);
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -208,8 +212,12 @@ public class Proyecto1View extends FrameView {
         mainPanel.add(jButton10);
         jButton10.setBounds(110, 110, 111, 23);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setName("jComboBox1"); // NOI18N
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seleccionado(evt);
+            }
+        });
         mainPanel.add(jComboBox1);
         jComboBox1.setBounds(110, 140, 111, 20);
 
@@ -225,7 +233,6 @@ public class Proyecto1View extends FrameView {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(proyecto1.Proyecto1App.class).getContext().getActionMap(Proyecto1View.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
-        exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         exitMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -697,16 +704,35 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_Abrir
 
     private void AbrirModelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AbrirModelo
-        jComboBox1.setVisible(true);
+        abrirModelo();
     }//GEN-LAST:event_AbrirModelo
 
     private void AbrirModelo2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AbrirModelo2
-         jComboBox1.setVisible(true);
+        abrirModelo();
     }//GEN-LAST:event_AbrirModelo2
-    public static void RecibirSeleccionada(Figura f) {
 
+    private void Seleccionado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleccionado
+        Modelo aux = new Modelo();
+        aux.setNombre(jComboBox1.getSelectedItem().toString());
+        ObjectSet result = db.queryByExample(aux);
+        Modelo aux2=(Modelo) result.get(0);
+        NuevoModelo(aux2);
+    }//GEN-LAST:event_Seleccionado
+
+    private void abrirModelo() {
+        jComboBox1.setVisible(true);
+        Modelo proto = new Modelo();
+        ObjectSet result = db.queryByExample(proto);
+        for (Object o : result) {
+            Modelo aux=(Modelo) o;
+            jComboBox1.addItem(aux.getNombre());
+        }
+        jComboBox1.repaint();
+    }
+        public static void RecibirSeleccionada(Figura f) {
         Proyecto1View.fig = f;
     }
+    
     public void NuevoModelo(){
      try {
             jFrame1.setVisible(true);
@@ -716,7 +742,25 @@ public class Proyecto1View extends FrameView {
             guiobjects.setLayout(null);
             Modelo modelo = new Modelo();
             vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-190), modelo);
-            controlador = new Controlador(modelo, vista);
+            controlador = new Controlador(modelo, vista, db);
+            vista.controlador = controlador;
+            guiobjects.add(controlador.getVista());
+        }
+        catch (RuntimeException e) {
+            exitApplication();
+        }
+    }
+    
+    public void NuevoModelo(Modelo modelo_archivo){
+     try {
+            jFrame1.setVisible(true);
+            Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
+            jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
+            Container guiobjects = jFrame1.getContentPane();
+            guiobjects.setLayout(null);
+            Modelo modelo = modelo_archivo;
+            vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-190), modelo);
+            controlador = new Controlador(modelo, vista, db);
             vista.controlador = controlador;
             guiobjects.add(controlador.getVista());
         }
@@ -783,4 +827,5 @@ public class Proyecto1View extends FrameView {
     private void exitApplication() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
 }

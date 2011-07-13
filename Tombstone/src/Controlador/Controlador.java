@@ -22,9 +22,9 @@ public class Controlador {
     public Figura seleccionada;
     public boolean compilador, programa, maquina, interprete;
 ObjectContainer db ;
-    public Controlador(Modelo modelo, Vista vista) {
+    public Controlador(Modelo modelo, Vista vista, ObjectContainer db) {
         
-        db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "basedatos.db4o");
+        this.db = db;
         this.modelo = modelo;
         this.vista = vista;
         seleccionada = null;
@@ -416,6 +416,7 @@ ObjectContainer db ;
                 this.anyadirFigura(new Compilador(punto_nuevo, 40, compi2.getFuente(), compi2.getObjeto(), compi1.getObjeto()));
             }
             abrirMensaje( "Se creo un nuevo compilador");
+            guardar_modelo();
         }
         
         //Verificando si se genera un nuevo programa
@@ -433,6 +434,7 @@ ObjectContainer db ;
             Point punto_nuevo = new Point(compi.getX() + 130, progra.getY());
             this.anyadirFigura(new Programa(punto_nuevo, 40,progra.getPrograma(),compi.getObjeto()));
             abrirMensaje("Se creo un nuevo programa");
+            guardar_modelo();
         }
         
         for (Figura elemento : modelo.getListadoAux()) {
@@ -444,7 +446,12 @@ ObjectContainer db ;
     {
         String respuesta = JOptionPane.showInputDialog("Nombre del modelo");
         modelo.setNombre(respuesta);
-        db.store(modelo.getListadoAux());
+        try {
+            db.store(modelo);
+        } finally {
+            db.close();
+            //abrirMensaje("Error al guardar");
+        }
     }
     
     private void abrir_modelo(String nombre_modelo)
