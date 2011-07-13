@@ -415,7 +415,6 @@ ObjectContainer db ;
                 Point punto_nuevo = new Point(compi2.getX() + 202, compi2.getY());
                 this.anyadirFigura(new Compilador(punto_nuevo, 40, compi2.getFuente(), compi2.getObjeto(), compi1.getObjeto()));
             }
-            db.store(modelo.getListadoAux());
             abrirMensaje( "Se creo un nuevo compilador");
         }
         
@@ -433,12 +432,27 @@ ObjectContainer db ;
             }
             Point punto_nuevo = new Point(compi.getX() + 130, progra.getY());
             this.anyadirFigura(new Programa(punto_nuevo, 40,progra.getPrograma(),compi.getObjeto()));
-            db.store(modelo.getListadoAux());
             abrirMensaje("Se creo un nuevo programa");
         }
         
         for (Figura elemento : modelo.getListadoAux()) {
             System.out.println(elemento.toString());
         }
+    }
+    
+    private void guardar_modelo()
+    {
+        String respuesta = JOptionPane.showInputDialog("Nombre del modelo");
+        modelo.setNombre(respuesta);
+        db.store(modelo.getListadoAux());
+    }
+    
+    private void abrir_modelo(String nombre_modelo)
+    {
+        Modelo aux = new Modelo();
+        aux.setNombre(nombre_modelo);
+        ObjectSet result = db.queryByExample(aux);
+        modelo=(Modelo) result.get(0);
+        abrirMensaje("Modelo cargado con exito");
     }
 }

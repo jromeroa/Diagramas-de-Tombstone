@@ -8,7 +8,10 @@ public class Modelo {
 	
 	private List<Figura> listaFiguras;
         private List<Figura> listaAux;
-        private boolean esta,estaAux;
+        private boolean esta, estaAux;
+        private String nombre_modelo;
+        
+        
 	public Modelo(){
 		listaFiguras = new ArrayList<Figura>();
                 listaAux = new ArrayList<Figura>();
@@ -57,4 +60,12 @@ public class Modelo {
 		}
 		return null;
 	}
+        
+        public void setNombre(String nombre_modelo){
+            this.nombre_modelo=nombre_modelo;
+        }
+        
+        public String getNombre(){
+            return nombre_modelo;
+        }
 }
