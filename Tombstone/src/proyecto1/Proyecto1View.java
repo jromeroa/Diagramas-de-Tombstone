@@ -27,8 +27,10 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import javax.swing.Timer;
 import javax.swing.Icon;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -43,6 +45,7 @@ public class Proyecto1View extends FrameView {
     public Vista vista;
     public Controlador controlador;
     public static Figura fig;
+    private boolean abrir;
     ObjectContainer db ;
     
     public Proyecto1View(SingleFrameApplication app) {
@@ -51,6 +54,7 @@ public class Proyecto1View extends FrameView {
         initComponents();
         db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "basedatos.db4o");
         jComboBox1.setVisible(false);
+        abrir=false;
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -213,6 +217,11 @@ public class Proyecto1View extends FrameView {
         jButton10.setBounds(110, 110, 111, 23);
 
         jComboBox1.setName("jComboBox1"); // NOI18N
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Seleccionado2(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Seleccionado(evt);
@@ -309,6 +318,11 @@ public class Proyecto1View extends FrameView {
         jFrame1.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         jFrame1.setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         jFrame1.setName("jFrame1"); // NOI18N
+        jFrame1.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                jFrame1WindowClosing(evt);
+            }
+        });
         jFrame1.getContentPane().setLayout(null);
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
@@ -712,12 +726,27 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_AbrirModelo2
 
     private void Seleccionado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleccionado
-        Modelo aux = new Modelo();
-        aux.setNombre(jComboBox1.getSelectedItem().toString());
-        ObjectSet result = db.queryByExample(aux);
-        Modelo aux2=(Modelo) result.get(0);
-        NuevoModelo(aux2);
+
     }//GEN-LAST:event_Seleccionado
+
+    private void Seleccionado2(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Seleccionado2
+        if(abrir){
+            JComboBox cb = (JComboBox)evt.getSource();
+            Object item = evt.getItem();
+            if (evt.getStateChange() == ItemEvent.SELECTED) {
+                Modelo aux = new Modelo();
+                aux.setNombre(jComboBox1.getSelectedItem().toString());
+                ObjectSet result = db.queryByExample(aux);
+                Modelo aux2=(Modelo) result.get(0);
+                NuevoModelo(aux2);
+            }
+        }
+    }//GEN-LAST:event_Seleccionado2
+
+    private void jFrame1WindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowClosing
+        vista=null;
+        controlador=null;
+    }//GEN-LAST:event_jFrame1WindowClosing
 
     private void abrirModelo() {
         jComboBox1.setVisible(true);
@@ -728,6 +757,7 @@ public class Proyecto1View extends FrameView {
             jComboBox1.addItem(aux.getNombre());
         }
         jComboBox1.repaint();
+        abrir=true;
     }
         public static void RecibirSeleccionada(Figura f) {
         Proyecto1View.fig = f;

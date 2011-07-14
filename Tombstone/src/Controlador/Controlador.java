@@ -21,7 +21,8 @@ public class Controlador {
     private Vista vista;
     public Figura seleccionada;
     public boolean compilador, programa, maquina, interprete;
-ObjectContainer db ;
+    ObjectContainer db;
+    
     public Controlador(Modelo modelo, Vista vista, ObjectContainer db) {
         
         this.db = db;
@@ -446,12 +447,7 @@ ObjectContainer db ;
     {
         String respuesta = JOptionPane.showInputDialog("Nombre del modelo");
         modelo.setNombre(respuesta);
-        try {
-            db.store(modelo);
-        } finally {
-            db.close();
-            //abrirMensaje("Error al guardar");
-        }
+        db.store(modelo);
     }
     
     private void abrir_modelo(String nombre_modelo)
