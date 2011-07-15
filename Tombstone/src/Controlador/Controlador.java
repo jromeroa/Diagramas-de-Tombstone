@@ -15,16 +15,14 @@ import Modelo.Modelo;
 import com.db4o.*;
 import javax.swing.*;
 
-public class Controlador {
+public class Controlador extends Thread {
 
     private Modelo modelo;
     private Vista vista;
     public Figura seleccionada;
     public boolean compilador, programa, maquina, interprete;
-ObjectContainer db ;
-    public Controlador(Modelo modelo, Vista vista, ObjectContainer db) {
-        
-        this.db = db;
+    
+    public Controlador(Modelo modelo, Vista vista) {
         this.modelo = modelo;
         this.vista = vista;
         seleccionada = null;
@@ -32,7 +30,6 @@ ObjectContainer db ;
         programa = false;
         maquina = false;
         interprete = false;
-
     }
 
     public Figura obtenerFigura(Point posicion) {
@@ -416,7 +413,7 @@ ObjectContainer db ;
                 this.anyadirFigura(new Compilador(punto_nuevo, 40, compi2.getFuente(), compi2.getObjeto(), compi1.getObjeto()));
             }
             abrirMensaje( "Se creo un nuevo compilador");
-            guardar_modelo();
+           
         }
         
         //Verificando si se genera un nuevo programa
@@ -434,32 +431,11 @@ ObjectContainer db ;
             Point punto_nuevo = new Point(compi.getX() + 130, progra.getY());
             this.anyadirFigura(new Programa(punto_nuevo, 40,progra.getPrograma(),compi.getObjeto()));
             abrirMensaje("Se creo un nuevo programa");
-            guardar_modelo();
+            
         }
         
         for (Figura elemento : modelo.getListadoAux()) {
             System.out.println(elemento.toString());
         }
-    }
-    
-    private void guardar_modelo()
-    {
-        String respuesta = JOptionPane.showInputDialog("Nombre del modelo");
-        modelo.setNombre(respuesta);
-        try {
-            db.store(modelo);
-        } finally {
-            db.close();
-            //abrirMensaje("Error al guardar");
-        }
-    }
-    
-    private void abrir_modelo(String nombre_modelo)
-    {
-        Modelo aux = new Modelo();
-        aux.setNombre(nombre_modelo);
-        ObjectSet result = db.queryByExample(aux);
-        modelo=(Modelo) result.get(0);
-        abrirMensaje("Modelo cargado con exito");
     }
 }

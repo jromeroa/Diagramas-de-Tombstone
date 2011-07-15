@@ -25,7 +25,7 @@ public class Vista extends JPanel {
 	public Vista(Dimension size, Modelo modelo){
 		super();
 		this.modelo=modelo;
-		setBounds(105, 100, size.width, size.height);
+		setBounds(180, 100, size.width, size.height);
 		setBorder(new BevelBorder(1));
 		setBackground(Color.white);
 		setFocusable(true);

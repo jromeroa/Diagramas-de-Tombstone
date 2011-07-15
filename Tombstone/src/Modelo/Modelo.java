@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Modelo {
+public class Modelo{
 	
 	private List<Figura> listaFiguras;
         private List<Figura> listaAux;
