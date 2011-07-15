@@ -434,6 +434,13 @@ public class Controlador extends Thread {
             
         }
         
+        
+        //Verificando que se ejecuto un programa.
+         if (compiladores == 0 && maquinas == 1 && interpretes <=1 && programas==1) 
+        {
+            abrirMensaje("Se ejecuto correctamente el programa");
+        }
+         
         for (Figura elemento : modelo.getListadoAux()) {
             System.out.println(elemento.toString());
         }

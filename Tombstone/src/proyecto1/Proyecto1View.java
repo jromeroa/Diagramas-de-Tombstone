@@ -336,6 +336,7 @@ public class Proyecto1View extends FrameView{
                 .addGap(3, 3, 3))
         );
 
+        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame1.setBounds(new java.awt.Rectangle(0, 0, 1024, 768));
         jFrame1.setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         jFrame1.setName("jFrame1"); // NOI18N
