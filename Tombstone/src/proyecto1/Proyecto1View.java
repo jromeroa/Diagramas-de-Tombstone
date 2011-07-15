@@ -33,6 +33,7 @@ import javax.swing.Icon;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -44,6 +45,7 @@ public class Proyecto1View extends FrameView {
 
     public Vista vista;
     public Controlador controlador;
+    public Modelo modelo;
     public static Figura fig;
     private boolean abrir;
     ObjectContainer db ;
@@ -155,6 +157,9 @@ public class Proyecto1View extends FrameView {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
         jFrame2 = new javax.swing.JFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -194,8 +199,9 @@ public class Proyecto1View extends FrameView {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
         mainPanel.add(jLabel1);
-        jLabel1.setBounds(100, 40, 143, 14);
+        jLabel1.setBounds(150, 30, 143, 14);
 
+        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,8 +210,9 @@ public class Proyecto1View extends FrameView {
             }
         });
         mainPanel.add(jButton1);
-        jButton1.setBounds(110, 80, 111, 23);
+        jButton1.setBounds(50, 80, 170, 80);
 
+        jButton10.setIcon(resourceMap.getIcon("jButton10.icon")); // NOI18N
         jButton10.setText(resourceMap.getString("jButton10.text")); // NOI18N
         jButton10.setName("jButton10"); // NOI18N
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -214,7 +221,7 @@ public class Proyecto1View extends FrameView {
             }
         });
         mainPanel.add(jButton10);
-        jButton10.setBounds(110, 110, 111, 23);
+        jButton10.setBounds(230, 80, 170, 80);
 
         jComboBox1.setName("jComboBox1"); // NOI18N
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
@@ -228,7 +235,7 @@ public class Proyecto1View extends FrameView {
             }
         });
         mainPanel.add(jComboBox1);
-        jComboBox1.setBounds(110, 140, 111, 20);
+        jComboBox1.setBounds(140, 180, 170, 30);
 
         mainPanel.getAccessibleContext().setAccessibleParent(jButton1);
 
@@ -293,11 +300,11 @@ public class Proyecto1View extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -315,7 +322,7 @@ public class Proyecto1View extends FrameView {
                 .addGap(3, 3, 3))
         );
 
-        jFrame1.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        jFrame1.setBounds(new java.awt.Rectangle(0, 0, 1024, 768));
         jFrame1.setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         jFrame1.setName("jFrame1"); // NOI18N
         jFrame1.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -325,6 +332,7 @@ public class Proyecto1View extends FrameView {
         });
         jFrame1.getContentPane().setLayout(null);
 
+        jButton3.setIcon(resourceMap.getIcon("jButton3.icon")); // NOI18N
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -333,8 +341,9 @@ public class Proyecto1View extends FrameView {
             }
         });
         jFrame1.getContentPane().add(jButton3);
-        jButton3.setBounds(10, 140, 85, 23);
+        jButton3.setBounds(10, 190, 160, 80);
 
+        jButton2.setIcon(resourceMap.getIcon("jButton2.icon")); // NOI18N
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -343,8 +352,9 @@ public class Proyecto1View extends FrameView {
             }
         });
         jFrame1.getContentPane().add(jButton2);
-        jButton2.setBounds(10, 99, 85, 23);
+        jButton2.setBounds(10, 100, 160, 80);
 
+        jButton4.setIcon(resourceMap.getIcon("jButton4.icon")); // NOI18N
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
         jButton4.setName("jButton4"); // NOI18N
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -353,8 +363,9 @@ public class Proyecto1View extends FrameView {
             }
         });
         jFrame1.getContentPane().add(jButton4);
-        jButton4.setBounds(10, 180, 85, 23);
+        jButton4.setBounds(10, 280, 160, 80);
 
+        jButton5.setIcon(resourceMap.getIcon("jButton5.icon")); // NOI18N
         jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
         jButton5.setName("jButton5"); // NOI18N
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -363,12 +374,34 @@ public class Proyecto1View extends FrameView {
             }
         });
         jFrame1.getContentPane().add(jButton5);
-        jButton5.setBounds(10, 220, 85, 23);
+        jButton5.setBounds(10, 370, 160, 80);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
         jLabel14.setName("jLabel14"); // NOI18N
         jFrame1.getContentPane().add(jLabel14);
-        jLabel14.setBounds(380, 50, 199, 14);
+        jLabel14.setBounds(180, 80, 700, 14);
+
+        jButton11.setIcon(resourceMap.getIcon("jButton11.icon")); // NOI18N
+        jButton11.setText(resourceMap.getString("jButton11.text")); // NOI18N
+        jButton11.setName("jButton11"); // NOI18N
+        jFrame1.getContentPane().add(jButton11);
+        jButton11.setBounds(10, 570, 160, 80);
+
+        jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
+        jLabel15.setName("jLabel15"); // NOI18N
+        jFrame1.getContentPane().add(jLabel15);
+        jLabel15.setBounds(420, 30, 199, 14);
+
+        jButton12.setIcon(resourceMap.getIcon("jButton12.icon")); // NOI18N
+        jButton12.setText(resourceMap.getString("jButton12.text")); // NOI18N
+        jButton12.setName("jButton12"); // NOI18N
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Guardar(evt);
+            }
+        });
+        jFrame1.getContentPane().add(jButton12);
+        jButton12.setBounds(10, 480, 160, 80);
 
         jFrame2.setMinimumSize(new java.awt.Dimension(300, 200));
         jFrame2.setName("jFrame2"); // NOI18N
@@ -744,10 +777,20 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_Seleccionado2
 
     private void jFrame1WindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowClosing
-        vista=null;
-        controlador=null;
+       
     }//GEN-LAST:event_jFrame1WindowClosing
 
+    private void Guardar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Guardar
+        guardar_modelo();
+    }//GEN-LAST:event_Guardar
+
+    private void guardar_modelo()
+    {
+        String respuesta = JOptionPane.showInputDialog("Nombre del modelo");
+        modelo.setNombre(respuesta);
+        db.store(modelo);
+    }
+    
     private void abrirModelo() {
         jComboBox1.setVisible(true);
         Modelo proto = new Modelo();
@@ -759,7 +802,8 @@ public class Proyecto1View extends FrameView {
         jComboBox1.repaint();
         abrir=true;
     }
-        public static void RecibirSeleccionada(Figura f) {
+    
+    public static void RecibirSeleccionada(Figura f) {
         Proyecto1View.fig = f;
     }
     
@@ -770,9 +814,9 @@ public class Proyecto1View extends FrameView {
             jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
             Container guiobjects = jFrame1.getContentPane();
             guiobjects.setLayout(null);
-            Modelo modelo = new Modelo();
+            modelo = new Modelo();
             vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-190), modelo);
-            controlador = new Controlador(modelo, vista, db);
+            controlador = new Controlador(modelo, vista);
             vista.controlador = controlador;
             guiobjects.add(controlador.getVista());
         }
@@ -788,9 +832,9 @@ public class Proyecto1View extends FrameView {
             jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
             Container guiobjects = jFrame1.getContentPane();
             guiobjects.setLayout(null);
-            Modelo modelo = modelo_archivo;
+            modelo = modelo_archivo;
             vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-190), modelo);
-            controlador = new Controlador(modelo, vista, db);
+            controlador = new Controlador(modelo, vista);
             vista.controlador = controlador;
             guiobjects.add(controlador.getVista());
         }
@@ -801,6 +845,8 @@ public class Proyecto1View extends FrameView {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -821,6 +867,7 @@ public class Proyecto1View extends FrameView {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
