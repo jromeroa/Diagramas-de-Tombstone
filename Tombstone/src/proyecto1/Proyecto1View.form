@@ -260,6 +260,7 @@
     </Container>
     <Container class="javax.swing.JFrame" name="jFrame1">
       <Properties>
+        <Property name="defaultCloseOperation" type="int" value="2"/>
         <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
           <Rectangle value="[0, 0, 1024, 768]"/>
         </Property>
