@@ -13,6 +13,8 @@ import Modelo.Modelo;
 import Modelo.Programa;
 import Vista.Vista;
 import Vista.Vista;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import com.db4o.*;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -20,6 +22,9 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -42,7 +47,6 @@ import javax.swing.ScrollPaneConstants;
  * The application's main frame.
  */
 public class Proyecto1View extends FrameView {
-
     public Vista vista;
     public Controlador controlador;
     public Modelo modelo;
@@ -53,24 +57,19 @@ public class Proyecto1View extends FrameView {
     Dimension fullscreen;
     
     public Proyecto1View(SingleFrameApplication app) {
-
         super(app);
         initComponents();
         db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "basedatos.db4o");
         jComboBox1.setVisible(false);
         abrir=false;
-        
         fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
         jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
         guiobjects = jFrame1.getContentPane();
         guiobjects.setLayout(null);
-        
-        
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
@@ -81,7 +80,6 @@ public class Proyecto1View extends FrameView {
             busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
@@ -94,7 +92,6 @@ public class Proyecto1View extends FrameView {
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
         taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
@@ -197,6 +194,7 @@ public class Proyecto1View extends FrameView {
         jLabel13 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
+        jFrame6 = new javax.swing.JFrame();
 
         mainPanel.setMaximumSize(new java.awt.Dimension(120, 180));
         mainPanel.setMinimumSize(new java.awt.Dimension(120, 180));
@@ -687,6 +685,19 @@ public class Proyecto1View extends FrameView {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
+        jFrame6.setName("jFrame6"); // NOI18N
+
+        javax.swing.GroupLayout jFrame6Layout = new javax.swing.GroupLayout(jFrame6.getContentPane());
+        jFrame6.getContentPane().setLayout(jFrame6Layout);
+        jFrame6Layout.setHorizontalGroup(
+            jFrame6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 468, Short.MAX_VALUE)
+        );
+        jFrame6Layout.setVerticalGroup(
+            jFrame6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 352, Short.MAX_VALUE)
+        );
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -725,7 +736,6 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_Interprete
 
     private void AceptaCompilador(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaCompilador
-
         Compilador compi= (Compilador) fig;
         compi.AtributosCompilador(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
         jFrame2.setVisible(false);
@@ -733,7 +743,6 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_AceptaCompilador
 
     private void AceptaPrograma(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaPrograma
-
         Programa progra= (Programa) fig;
         progra.AtributosPrograma(jTextField4.getText(), jTextField5.getText());
         jFrame3.setVisible(false);
@@ -741,7 +750,6 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_AceptaPrograma
 
     private void AceptaMaquina(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaMaquina
-
         Maquina maqui= (Maquina) fig;
         maqui.AtributoMaquina(jTextField6.getText());
         jFrame4.setVisible(false);
@@ -758,6 +766,7 @@ public class Proyecto1View extends FrameView {
 
     private void Abrir(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Abrir
        NuevoModelo();
+           
     }//GEN-LAST:event_Abrir
 
     private void AbrirModelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AbrirModelo
@@ -789,13 +798,20 @@ public class Proyecto1View extends FrameView {
     private void jFrame1WindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowClosing
         modelo.EliminarLista();
     }//GEN-LAST:event_jFrame1WindowClosing
-
+    public void Ocultar_Compontes()
+    {
+        Component[] d = vista.getComponents();
+		for( int i= 0 ; i< d.length ; i++ )
+                {
+			System.out.println(d[i].getName());
+				vista.remove( d[ i] );
+		}
+    }
     private void Guardar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Guardar
         guardar_modelo();
     }//GEN-LAST:event_Guardar
 
-    private void guardar_modelo()
-    {
+    private void guardar_modelo(){
         String respuesta = JOptionPane.showInputDialog("Nombre del modelo");
         modelo.setNombre(respuesta);
         db.store(modelo);
@@ -819,6 +835,7 @@ public class Proyecto1View extends FrameView {
     
     public void NuevoModelo(){
      try {
+            
             jFrame1.setVisible(true);
             modelo = new Modelo();
             vista = new Vista(new Dimension(fullscreen.width-150, fullscreen.height-190), modelo);
@@ -863,6 +880,7 @@ public class Proyecto1View extends FrameView {
     public static javax.swing.JFrame jFrame3;
     public static javax.swing.JFrame jFrame4;
     public static javax.swing.JFrame jFrame5;
+    private javax.swing.JFrame jFrame6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

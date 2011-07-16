@@ -15,7 +15,7 @@ import Modelo.Modelo;
 import com.db4o.*;
 import javax.swing.*;
 
-public class Controlador {
+public class Controlador extends Thread {
 
     private Modelo modelo;
     private Vista vista;
