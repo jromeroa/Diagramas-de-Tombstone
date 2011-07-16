@@ -49,6 +49,8 @@ public class Proyecto1View extends FrameView {
     public static Figura fig;
     private boolean abrir;
     ObjectContainer db ;
+    Container guiobjects;
+    Dimension fullscreen;
     
     public Proyecto1View(SingleFrameApplication app) {
 
@@ -57,6 +59,13 @@ public class Proyecto1View extends FrameView {
         db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "basedatos.db4o");
         jComboBox1.setVisible(false);
         abrir=false;
+        
+        fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
+        jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
+        guiobjects = jFrame1.getContentPane();
+        guiobjects.setLayout(null);
+        
+        
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -778,7 +787,7 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_Seleccionado2
 
     private void jFrame1WindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowClosing
-       
+        modelo.EliminarLista();
     }//GEN-LAST:event_jFrame1WindowClosing
 
     private void Guardar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Guardar
@@ -811,12 +820,8 @@ public class Proyecto1View extends FrameView {
     public void NuevoModelo(){
      try {
             jFrame1.setVisible(true);
-            Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
-            jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
-            Container guiobjects = jFrame1.getContentPane();
-            guiobjects.setLayout(null);
             modelo = new Modelo();
-            vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-190), modelo);
+            vista = new Vista(new Dimension(fullscreen.width-150, fullscreen.height-190), modelo);
             controlador = new Controlador(modelo, vista);
             vista.controlador = controlador;
             guiobjects.add(controlador.getVista());
@@ -829,10 +834,6 @@ public class Proyecto1View extends FrameView {
     public void NuevoModelo(Modelo modelo_archivo){
      try {
             jFrame1.setVisible(true);
-            Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
-            jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
-            Container guiobjects = jFrame1.getContentPane();
-            guiobjects.setLayout(null);
             modelo = modelo_archivo;
             vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-190), modelo);
             controlador = new Controlador(modelo, vista);

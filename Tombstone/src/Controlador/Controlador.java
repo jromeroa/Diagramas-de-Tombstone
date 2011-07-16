@@ -32,7 +32,8 @@ public class Controlador {
         interprete = false;
     }
 
-    public Figura obtenerFigura(Point posicion) {
+    public Figura obtenerFigura(Point posicion) 
+    {
         ListIterator<Figura> it = modelo.getListado().listIterator();
         while (it.hasNext()) {
             Figura tmp = it.next();
@@ -144,7 +145,6 @@ public class Controlador {
     public void eVmouseReleased(MouseEvent ev) {
         vista.repaint();
         if (seleccionada != null) {
-
             //Unir un compilador a alguna figura
             if (seleccionada instanceof Compilador) {
                 Point punto_final = new Point(seleccionada.getX() + 120, seleccionada.getY() + 60);
@@ -393,10 +393,8 @@ public class Controlador {
             }
         }
         
-        
         //Verificando si se genera un nuevo compilador
-        if (compiladores == 2 && maquinas == 1 && interpretes<=1 && programas==0) 
-        {
+        if (compiladores == 2 && maquinas == 1 && interpretes<=1 && programas==0) {
             Compilador compi1 = null, compi2 = null;
             for (Figura elemento : modelo.getListadoAux()) {
                 if (elemento instanceof Compilador && compi1 == null) {
@@ -417,8 +415,7 @@ public class Controlador {
         }
         
         //Verificando si se genera un nuevo programa
-        if (compiladores == 1 && maquinas == 1 && interpretes <=1 && programas==1) 
-        {
+        if (compiladores == 1 && maquinas == 1 && interpretes <=1 && programas==1) {
             Compilador compi = null;
             Programa progra = null;
             for (Figura elemento : modelo.getListadoAux()) {
@@ -434,10 +431,8 @@ public class Controlador {
             
         }
         
-        
         //Verificando que se ejecuto un programa.
-         if (compiladores == 0 && maquinas == 1 && interpretes <=1 && programas==1) 
-        {
+        if (compiladores == 0 && maquinas == 1 && interpretes <=1 && programas==1){
             abrirMensaje("Se ejecuto correctamente el programa");
         }
          
