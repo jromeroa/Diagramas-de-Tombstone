@@ -329,7 +329,6 @@ public class Proyecto1View extends FrameView {
                 .addGap(3, 3, 3))
         );
 
-        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame1.setBounds(new java.awt.Rectangle(0, 0, 1024, 768));
         jFrame1.setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         jFrame1.setName("jFrame1"); // NOI18N
@@ -704,7 +703,8 @@ public class Proyecto1View extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Modelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Modelo
-       NuevoModelo();
+        modelo = new Modelo();
+        NuevoModelo(modelo);
     }//GEN-LAST:event_Modelo
 
     private void Compilador(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Compilador
@@ -765,8 +765,8 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_AceptaInterprete
 
     private void Abrir(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Abrir
-       NuevoModelo();
-           
+        modelo = new Modelo();
+        NuevoModelo(modelo);
     }//GEN-LAST:event_Abrir
 
     private void AbrirModelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AbrirModelo
@@ -796,17 +796,9 @@ public class Proyecto1View extends FrameView {
     }//GEN-LAST:event_Seleccionado2
 
     private void jFrame1WindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowClosing
-        modelo.EliminarLista();
+        
     }//GEN-LAST:event_jFrame1WindowClosing
-    public void Ocultar_Compontes()
-    {
-        Component[] d = vista.getComponents();
-		for( int i= 0 ; i< d.length ; i++ )
-                {
-			System.out.println(d[i].getName());
-				vista.remove( d[ i] );
-		}
-    }
+
     private void Guardar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Guardar
         guardar_modelo();
     }//GEN-LAST:event_Guardar
@@ -831,21 +823,6 @@ public class Proyecto1View extends FrameView {
     
     public static void RecibirSeleccionada(Figura f) {
         Proyecto1View.fig = f;
-    }
-    
-    public void NuevoModelo(){
-     try {
-            
-            jFrame1.setVisible(true);
-            modelo = new Modelo();
-            vista = new Vista(new Dimension(fullscreen.width-150, fullscreen.height-190), modelo);
-            controlador = new Controlador(modelo, vista);
-            vista.controlador = controlador;
-            guiobjects.add(controlador.getVista());
-        }
-        catch (RuntimeException e) {
-            exitApplication();
-        }
     }
     
     public void NuevoModelo(Modelo modelo_archivo){

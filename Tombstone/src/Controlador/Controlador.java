@@ -15,7 +15,7 @@ import Modelo.Modelo;
 import com.db4o.*;
 import javax.swing.*;
 
-public class Controlador extends Thread {
+public class Controlador {
 
     private Modelo modelo;
     private Vista vista;
@@ -66,13 +66,10 @@ public class Controlador extends Thread {
         if (SwingUtilities.isLeftMouseButton(ev)) {
             seleccionada = this.getFiguraEn(ev.getPoint());
             if (seleccionada != null) {
-
-                if (modelo.EstaEnListaAux(seleccionada)) {
-                    modelo.ElimminarFiguraAux(seleccionada);
+                int nu_lista=modelo.EstaEnListaAux(seleccionada);
+                if (nu_lista>=0) {
+                    modelo.ElimminarFiguraAux(seleccionada,nu_lista);
                     System.out.println("Elimine de la lista aux:  " + seleccionada.toString());
-                }
-                for (Figura elemento : modelo.getListadoAux()) {
-                    System.out.println(elemento.toString());
                 }
                 if (ev.getClickCount() == 2 && seleccionada instanceof Compilador) {
                     proyecto1.Proyecto1View.jFrame2.setBounds(150, 150, 300, 220);
@@ -370,18 +367,18 @@ public class Controlador extends Thread {
 
     private void agregarListaAux(Figura seleccionada, Figura cercana) {
         //Agregando la o las figuras a la lista auxiliar
-        boolean consiguio = modelo.EstaEnListaAux(cercana);
-        System.out.println(consiguio);
-        if (!consiguio) {
-            modelo.anyadirFiguraAux(cercana);
-            modelo.anyadirFiguraAux(seleccionada);
+        int nu_lista = modelo.EstaEnListaAux(cercana);
+        if (nu_lista==-1) {
+            nu_lista=modelo.nuevoListadoAux();
+            modelo.anyadirFiguraAux(cercana,nu_lista);
+            modelo.anyadirFiguraAux(seleccionada,nu_lista);
         } else {
-            modelo.anyadirFiguraAux(seleccionada);
+            modelo.anyadirFiguraAux(seleccionada, nu_lista);
         }
         
         //Contando cada tipo de figura en la lista auxiliar
         int compiladores = 0, maquinas = 0, interpretes = 0, programas=0;
-        for (Figura elemento : modelo.getListadoAux()) {
+        for (Figura elemento : modelo.getListadoAux(nu_lista)) {
             if (elemento instanceof Compilador) {
                 compiladores++;
             } else if (elemento instanceof Maquina) {
@@ -396,7 +393,7 @@ public class Controlador extends Thread {
         //Verificando si se genera un nuevo compilador
         if (compiladores == 2 && maquinas == 1 && interpretes<=1 && programas==0) {
             Compilador compi1 = null, compi2 = null;
-            for (Figura elemento : modelo.getListadoAux()) {
+            for (Figura elemento : modelo.getListadoAux(nu_lista)) {
                 if (elemento instanceof Compilador && compi1 == null) {
                     compi1 = (Compilador) elemento;
                 } else if (elemento instanceof Compilador && compi2 == null) {
@@ -418,7 +415,7 @@ public class Controlador extends Thread {
         if (compiladores == 1 && maquinas == 1 && interpretes <=1 && programas==1) {
             Compilador compi = null;
             Programa progra = null;
-            for (Figura elemento : modelo.getListadoAux()) {
+            for (Figura elemento : modelo.getListadoAux(nu_lista)) {
                 if (elemento instanceof Compilador && compi == null) {
                     compi = (Compilador) elemento;
                 } else if (elemento instanceof Programa && progra == null) {
@@ -434,10 +431,6 @@ public class Controlador extends Thread {
         //Verificando que se ejecuto un programa.
         if (compiladores == 0 && maquinas == 1 && interpretes <=1 && programas==1){
             abrirMensaje("Se ejecuto correctamente el programa");
-        }
-         
-        for (Figura elemento : modelo.getListadoAux()) {
-            System.out.println(elemento.toString());
         }
     }
 }
