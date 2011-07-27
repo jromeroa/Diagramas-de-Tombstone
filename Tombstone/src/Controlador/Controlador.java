@@ -92,12 +92,28 @@ public class Controlador {
         } ///////////// CREACION DE LAS FIGURAS CON EL CLICK DERECHO  //////////////////  			
         else if (SwingUtilities.isRightMouseButton(ev) && compilador) {
             agaCompilador(ev);
+            seleccionada = this.getFiguraEn(new Point((int)ev.getPoint().getX()+10, (int)ev.getPoint().getY()+10));
+            proyecto1.Proyecto1View.jFrame2.setBounds(150, 150, 300, 220);
+            proyecto1.Proyecto1View.jFrame2.setVisible(true);         
+            proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
         } else if (SwingUtilities.isRightMouseButton(ev) && programa) {
             agaPrograma(ev);
+            seleccionada = this.getFiguraEn(new Point((int)ev.getPoint().getX()+10, (int)ev.getPoint().getY()+10));
+            proyecto1.Proyecto1View.jFrame3.setBounds(150, 150, 300, 220);
+            proyecto1.Proyecto1View.jFrame3.setVisible(true);         
+            proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
         } else if (SwingUtilities.isRightMouseButton(ev) && maquina) {
             agaMaquina(ev);
+            seleccionada = this.getFiguraEn(new Point((int)ev.getPoint().getX()+10, (int)ev.getPoint().getY()+10));
+            proyecto1.Proyecto1View.jFrame4.setBounds(150, 150, 300, 220);
+            proyecto1.Proyecto1View.jFrame4.setVisible(true);         
+            proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
         } else if (SwingUtilities.isRightMouseButton(ev) && interprete) {
             agaInterprete(ev);
+            seleccionada = this.getFiguraEn(new Point((int)ev.getPoint().getX()+10, (int)ev.getPoint().getY()+10));
+            proyecto1.Proyecto1View.jFrame5.setBounds(150, 150, 300, 220);
+            proyecto1.Proyecto1View.jFrame5.setVisible(true);                    
+            proyecto1.Proyecto1View.RecibirSeleccionada(seleccionada);
         } ////////////    BORRAR UNA IMAGEN CON LA RUEDA DEL MOUSE  ////////////
         else if (SwingUtilities.isMiddleMouseButton(ev)) {
             seleccionada = this.getFiguraEn(ev.getPoint());
@@ -361,8 +377,8 @@ public class Controlador {
     }
     
     private void abrirMensaje(String mensaje){
-            JOptionPane.showMessageDialog(null, mensaje);
-            proyecto1.Proyecto1View.jFrame1.setVisible(true);
+        JOptionPane.showMessageDialog(null, mensaje);
+        proyecto1.Proyecto1View.jFrame1.setVisible(true);
     }
 
     private void agregarListaAux(Figura seleccionada, Figura cercana) {
@@ -408,7 +424,6 @@ public class Controlador {
                 this.anyadirFigura(new Compilador(punto_nuevo, 40, compi2.getFuente(), compi2.getObjeto(), compi1.getObjeto()));
             }
             abrirMensaje( "Se creo un nuevo compilador");
-           
         }
         
         //Verificando si se genera un nuevo programa
