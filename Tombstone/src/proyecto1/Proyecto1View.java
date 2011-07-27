@@ -13,9 +13,6 @@ import Modelo.Modelo;
 import Modelo.Programa;
 import Vista.Vista;
 import Vista.Vista;
-import com.jpackages.jflashplayer.*;
-import com.jpackages.jflashplayer.JFlashInvalidFlashException;
-import com.jpackages.jflashplayer.JFlashLibraryLoadFailedException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import com.db4o.*;
@@ -36,7 +33,6 @@ import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JComboBox;
@@ -50,31 +46,30 @@ import javax.swing.ScrollPaneConstants;
 /**
  * The application's main frame.
  */
-public class Proyecto1View extends FrameView{
-
+public class Proyecto1View extends FrameView {
     public Vista vista;
     public Controlador controlador;
     public Modelo modelo;
     public static Figura fig;
-
     private boolean abrir;
-
     ObjectContainer db ;
+    Container guiobjects;
+    Dimension fullscreen;
     
     public Proyecto1View(SingleFrameApplication app) {
-
         super(app);
         initComponents();
         db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "basedatos.db4o");
         jComboBox1.setVisible(false);
-        
         abrir=false;
-
+        fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
+        jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
+        guiobjects = jFrame1.getContentPane();
+        guiobjects.setLayout(null);
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
@@ -85,7 +80,6 @@ public class Proyecto1View extends FrameView{
             busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
@@ -98,7 +92,6 @@ public class Proyecto1View extends FrameView{
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
         taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
@@ -314,11 +307,11 @@ public class Proyecto1View extends FrameView{
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -336,7 +329,6 @@ public class Proyecto1View extends FrameView{
                 .addGap(3, 3, 3))
         );
 
-        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame1.setBounds(new java.awt.Rectangle(0, 0, 1024, 768));
         jFrame1.setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         jFrame1.setName("jFrame1"); // NOI18N
@@ -399,6 +391,11 @@ public class Proyecto1View extends FrameView{
         jButton11.setIcon(resourceMap.getIcon("jButton11.icon")); // NOI18N
         jButton11.setText(resourceMap.getString("jButton11.text")); // NOI18N
         jButton11.setName("jButton11"); // NOI18N
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
         jFrame1.getContentPane().add(jButton11);
         jButton11.setBounds(10, 570, 160, 80);
 
@@ -711,8 +708,8 @@ public class Proyecto1View extends FrameView{
     }// </editor-fold>//GEN-END:initComponents
 
     private void Modelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Modelo
-       NuevoModelo();
-       
+        modelo = new Modelo();
+        NuevoModelo(modelo);
     }//GEN-LAST:event_Modelo
 
     private void Compilador(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Compilador
@@ -744,7 +741,6 @@ public class Proyecto1View extends FrameView{
     }//GEN-LAST:event_Interprete
 
     private void AceptaCompilador(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaCompilador
-
         Compilador compi= (Compilador) fig;
         compi.AtributosCompilador(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
         jFrame2.setVisible(false);
@@ -752,7 +748,6 @@ public class Proyecto1View extends FrameView{
     }//GEN-LAST:event_AceptaCompilador
 
     private void AceptaPrograma(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaPrograma
-
         Programa progra= (Programa) fig;
         progra.AtributosPrograma(jTextField4.getText(), jTextField5.getText());
         jFrame3.setVisible(false);
@@ -760,7 +755,6 @@ public class Proyecto1View extends FrameView{
     }//GEN-LAST:event_AceptaPrograma
 
     private void AceptaMaquina(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptaMaquina
-
         Maquina maqui= (Maquina) fig;
         maqui.AtributoMaquina(jTextField6.getText());
         jFrame4.setVisible(false);
@@ -776,8 +770,8 @@ public class Proyecto1View extends FrameView{
     }//GEN-LAST:event_AceptaInterprete
 
     private void Abrir(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Abrir
-       NuevoModelo();
-           
+        modelo = new Modelo();
+        NuevoModelo(modelo);
     }//GEN-LAST:event_Abrir
 
     private void AbrirModelo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AbrirModelo
@@ -807,28 +801,18 @@ public class Proyecto1View extends FrameView{
     }//GEN-LAST:event_Seleccionado2
 
     private void jFrame1WindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowClosing
-     vista.list(System.out);
-     System.out.println("\n");
-        Ocultar_Compontes();
-       vista.list(System.out);
-     // jFrame1.dispose();
-      vista=null;
+        System.exit(0);
     }//GEN-LAST:event_jFrame1WindowClosing
-    public void Ocultar_Compontes()
-    {
-        Component[] d = vista.getComponents();
-		for( int i= 0 ; i< d.length ; i++ )
-                {
-			System.out.println(d[i].getName());
-				vista.remove( d[ i] );
-		}
-    }
+
     private void Guardar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Guardar
         guardar_modelo();
     }//GEN-LAST:event_Guardar
 
-    private void guardar_modelo()
-    {
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void guardar_modelo(){
         String respuesta = JOptionPane.showInputDialog("Nombre del modelo");
         modelo.setNombre(respuesta);
         db.store(modelo);
@@ -850,32 +834,9 @@ public class Proyecto1View extends FrameView{
         Proyecto1View.fig = f;
     }
     
-    public void NuevoModelo(){
-     try {
-            
-            jFrame1.setVisible(true);
-            Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
-            jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
-            Container guiobjects = jFrame1.getContentPane();
-            guiobjects.setLayout(null);
-            modelo = new Modelo();
-            vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-190), modelo);
-            controlador = new Controlador(modelo, vista);
-            vista.controlador = controlador;
-            guiobjects.add(controlador.getVista());
-        }
-        catch (RuntimeException e) {
-            exitApplication();
-        }
-    }
-    
     public void NuevoModelo(Modelo modelo_archivo){
      try {
             jFrame1.setVisible(true);
-            Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
-            jFrame1.setBounds(0, 0,fullscreen.width, fullscreen.height-40);
-            Container guiobjects = jFrame1.getContentPane();
-            guiobjects.setLayout(null);
             modelo = modelo_archivo;
             vista = new Vista(new Dimension(fullscreen.width-150,fullscreen.height-190), modelo);
             controlador = new Controlador(modelo, vista);
